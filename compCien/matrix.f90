@@ -16,7 +16,7 @@ allocate (b(1:num))
 
 
 sumdt=0
-do cont=1, 10
+do cont=1, 100
 
 t1=0
 t2=0
