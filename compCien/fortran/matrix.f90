@@ -9,7 +9,6 @@ real::dt, t1, t2, sumdt
 open (10, file='result.txt')
 
 num = 10  
- 
 allocate (a(1:num,1:num))
 allocate (x(1:num))
 allocate (b(1:num))
