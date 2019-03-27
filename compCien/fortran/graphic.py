@@ -39,7 +39,7 @@ ax.tick_params(direction='in', width='0.1')
 plt.tick_params(axis='both', labelsize=12, pad=1)
 plt.xlabel(r'N', fontsize=12,labelpad=2)
 plt.ylabel(r'CPU time $[s]$',style='italic', fontsize=12, rotation='vertical',
-           labelpad=12)
+           labelpad=3)
 ax.grid(color='grey', linestyle='--', linewidth=0.1,
         drawstyle='steps')    
 plt.plot(A[:,1],A[:,0],'r-', linewidth=0.75,label='row')
