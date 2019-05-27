@@ -7,7 +7,7 @@
 import numpy as np
 
 class InOut:
- def __init__(_self,_X,_Y,_IEN,_numVerts,_numElems,_scalar, _scalar2, _vet1, _vet2):
+ def __init__(_self,_X,_Y,_IEN,_numVerts,_numElems,_scalar , _scalar2=None, _vet1=None, _vet2=None):
   _self.X = _X
   _self.Y = _Y
   _self.IEN = _IEN
@@ -110,27 +110,6 @@ class InOut:
 
   _file.write( "\n" )
 
- def printMeshReport(_self):
-  """
-   Print mesh report for lineMesh and Mesh
-  """
-  print ""
-  print ""
-  print "|" + "-"*30 + " Mesh Report " + "-"*30 + "|"
-  print " "*5 + "number of 2D points (numVerts):          " + \
-        str(_self.numVerts)
-  print " "*5 + "number of triangles (numElems):          " + \
-        str(_self.numElems)
-#--------------------------------------------------
-#   print ""
-#   for nb in range(0,_self.mesh.elemIdRegion.max()+1):
-#    print " "*5 + "line (" + str(nb) + ")" 
-#    print " "*5 + "  |length (averageLength):              " + \
-#         str(_self.mesh.averageEdgeLength)
-#-------------------------------------------------- 
 
-  print "|" + "-"*73 + "|"
-  print ""
-  print ""
 
      

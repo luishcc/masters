@@ -233,5 +233,5 @@ def neighbourTest(_np):
 
     result[3].append(9)
 
-    print result
+    print(result)
     return result
