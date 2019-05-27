@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/InOut.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/InOut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/foo.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/foo.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bifasico/libmalha.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/libmalha.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bifasico/main2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/main2.0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/semiLagrangean.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/semiLagrangean.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,20 +17,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bifasico/main2.0.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="189" lean-forward="true" selection-start-line="189" selection-end-line="189" />
+            <state relative-caret-position="34">
+              <caret line="110" column="8" lean-forward="true" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
               <folding>
-                <element signature="e#754#2050#0" />
+                <element signature="e#24#42#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bifasico/InOut.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="9" column="98" selection-start-line="9" selection-start-column="98" selection-end-line="9" selection-end-column="98" />
             </state>
           </provider>
         </entry>
@@ -54,8 +43,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/bifasico/semiLagrangean.py" />
-        <option value="$PROJECT_DIR$/bifasico/libmalha.py" />
         <option value="$PROJECT_DIR$/bifasico/InOut.py" />
+        <option value="$PROJECT_DIR$/bifasico/libmalha.py" />
         <option value="$PROJECT_DIR$/bifasico/main2.0.py" />
       </list>
     </option>
@@ -101,6 +90,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.customizations" />
   </component>
@@ -190,8 +180,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/libmalha.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="235" column="6" lean-forward="true" selection-start-line="235" selection-start-column="6" selection-end-line="235" selection-end-column="6" />
+        <state relative-caret-position="34">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+          <folding>
+            <element signature="e#24#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -204,10 +197,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/main2.0.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="189" lean-forward="true" selection-start-line="189" selection-end-line="189" />
+        <state relative-caret-position="34">
+          <caret line="110" column="8" lean-forward="true" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
           <folding>
-            <element signature="e#754#2050#0" />
+            <element signature="e#24#42#0" expanded="true" />
           </folding>
         </state>
       </provider>

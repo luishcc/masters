@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+import scipy as sp
 
 # Escrito por: Luís Cunha
 # Última atualização: 14/08/2017
@@ -235,3 +236,48 @@ def neighbourTest(_np):
 
     print(result)
     return result
+
+
+def fem_matrix(_x, _y, _numele, _numnode, _ax, _ien):
+    k_local = sp.zeros((3, 3))
+    m_local = sp.array([[2, 1, 1], [1, 2, 1], [1, 1, 2]])
+    a = sp.zeros(3)
+    b = sp.zeros(3)
+    c = sp.zeros(3)
+    yy = sp.zeros(3)
+    xx = sp.zeros(3)
+    K_global = sp.zeros((_numnode, _numnode))
+    M_global = sp.zeros((_numnode, _numnode))
+    visc = 0.
+
+    for elem in range(_numele):
+        for i in range(3):
+            visc += _ax[i]
+            xx[i] = _x[_ien[elem, i]]
+            yy[i] = _y[_ien[elem, i]]
+
+        visc = visc / 3.0
+
+        a[0] = xx[0] * yy[1] - xx[1] * yy[0]
+        a[1] = xx[2] * yy[0] - xx[0] * yy[2]
+        a[2] = xx[1] * yy[2] - xx[2] * yy[1]
+        b[0] = yy[1] - yy[2]
+        b[1] = yy[2] - yy[0]
+        b[2] = yy[0] - yy[1]
+        c[0] = xx[2] - xx[1]
+        c[1] = xx[0] - xx[2]
+        c[2] = xx[1] - xx[0]
+        Area = (a[0] + a[1] + a[2]) * 0.5
+
+        for i in range(3):
+            for j in range(3):
+                k_local[i, j] = (b[i] * b[j] + c[i] * c[j]) / (4 * Area)
+
+        for i_local in range(3):
+            i_global = _ien[elem, i_local]
+            for j_local in range(3):
+                j_global = _ien[elem, j_local]
+                K_global[i_global, j_global] += k_local[i_local, j_local] * visc
+                M_global[i_global, j_global] += m_local[i_local, j_local] * (Area / 12.)
+
+    return K_global, M_global
