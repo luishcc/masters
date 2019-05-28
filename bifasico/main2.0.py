@@ -6,6 +6,7 @@ import semiLagrangean as sl
 import libmalha as lm
 import GMesh as gm
 import os
+import forces
 import random
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -120,7 +121,13 @@ def solve():
 
 #solve()
 
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
+#               PLOT
+
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # TROCAR Z POR Y
 def data_for_cylinder_along_z(center_x,center_y,radius,height_z):
     z = sp.linspace(0, height_z, 50)
@@ -134,12 +141,11 @@ def data_for_cylinder_along_z(center_x,center_y,radius,height_z):
 def plot(_pos, _name):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-
     Xc,Yc,Zc = data_for_cylinder_along_z(0.0,0.0, 1, 20)
     ax.plot_surface(Xc, Zc, Yc, alpha=0.2)
     ax.view_init(elev=26, azim=30)
     ax.set_axis_off()
-    for i in range(n_particulas):
+    for i in range(len(_pos)):
         ax.scatter(_pos[i,0], _pos[i,2], _pos[i,1])
     plt.show()
     fig.savefig(_name, format='pdf')
