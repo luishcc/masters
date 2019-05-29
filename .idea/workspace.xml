@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bifasico/forces.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bifasico/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/masters.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/masters.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bifasico/main3D.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/main2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/main2.0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/foo.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/forces.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/forces.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/main2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/main2D.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,22 +18,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bifasico/main2.0.py">
+        <entry file="file://$PROJECT_DIR$/bifasico/main2D.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="226">
-              <caret line="126" selection-start-line="126" selection-end-line="126" />
+              <caret line="176" column="4" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
+                <element signature="e#731#813#0" />
+                <element signature="e#1044#1192#0" />
+                <element signature="e#1266#1330#0" />
+                <element signature="e#2142#2150#0" />
+                <element signature="e#2172#2180#0" />
+                <element signature="e#2199#2207#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bifasico/forces.py">
+        <entry file="file://$PROJECT_DIR$/bifasico/main3D.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+            <state relative-caret-position="-1338">
+              <caret line="51" selection-start-line="51" selection-end-line="55" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -49,10 +55,16 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>num_ele+1</find>
       <find>np.</find>
+      <find>KM</find>
+      <find>i</find>
     </findStrings>
     <replaceStrings>
+      <replace>nodes</replace>
       <replace>sp.</replace>
+      <replace>LHS</replace>
+      <replace>t</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -64,15 +76,16 @@
         <option value="$PROJECT_DIR$/bifasico/semiLagrangean.py" />
         <option value="$PROJECT_DIR$/bifasico/InOut.py" />
         <option value="$PROJECT_DIR$/bifasico/libmalha.py" />
-        <option value="$PROJECT_DIR$/bifasico/test.py" />
         <option value="$PROJECT_DIR$/bifasico/forces.py" />
+        <option value="$PROJECT_DIR$/bifasico/test.py" />
         <option value="$PROJECT_DIR$/bifasico/main2.0.py" />
+        <option value="$PROJECT_DIR$/bifasico/main2D.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="27" />
-    <option name="width" value="1308" />
+    <option name="width" value="1210" />
     <option name="height" value="873" />
   </component>
   <component name="ProjectView">
@@ -101,8 +114,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bifasico" />
     <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bifasico" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -116,7 +134,49 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main2.0">
+  <component name="RunManager" selected="Python.main2D">
+    <configuration name="forces" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="masters" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/forces.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main2D" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="masters" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/main2D.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main2.0" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="masters" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -161,8 +221,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main2.0" />
+        <item itemvalue="Python.main2D" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.forces" />
+        <item itemvalue="Python.main2.0" />
       </list>
     </recent_temporary>
   </component>
@@ -180,10 +242,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1308" height="873" extended-state="0" />
+    <frame x="0" y="27" width="1210" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.108949415" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11710194" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -203,13 +265,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bifasico/semiLagrangean.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3427">
-          <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/InOut.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -217,39 +272,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/libmalha.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-          <folding>
-            <element signature="e#24#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="45" selection-start-line="45" selection-end-line="53" selection-end-column="48" />
+        <state relative-caret-position="260">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/forces.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/main2.0.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="-1083">
+          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/libmalha.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3434">
+          <caret line="42" column="29" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="42" selection-end-column="29" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/semiLagrangean.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="211" column="32" lean-forward="true" selection-start-line="211" selection-start-column="32" selection-end-line="211" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/forces.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="24" selection-start-line="26" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/main3D.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1338">
+          <caret line="51" selection-start-line="51" selection-end-line="55" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/main2D.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="176" column="4" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
+          <folding>
+            <element signature="e#24#42#0" expanded="true" />
+            <element signature="e#731#813#0" />
+            <element signature="e#1044#1192#0" />
+            <element signature="e#1266#1330#0" />
+            <element signature="e#2142#2150#0" />
+            <element signature="e#2172#2180#0" />
+            <element signature="e#2199#2207#0" />
           </folding>
         </state>
       </provider>

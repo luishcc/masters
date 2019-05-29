@@ -6,7 +6,7 @@ import semiLagrangean as sl
 import libmalha as lm
 import GMesh as gm
 import os
-import forces
+import forces as ff
 import random
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
