@@ -1,14 +1,13 @@
-/home/luis/masters/mcf2/ex1/results
-/home/luis/masters/mcf2/ex1/results/*
+/mcf2/ex1/results
+/mcf2/ex1/results/**
 
-/home/luis/masters/.idea/*
-/home/luis/masters/.idea
-/home/luis/masters/.gitignore~
-/home/luis/masters/bifasico/results
-/home/luis/masters/bifasico/results/*
-/home/luis/masters/bifasico/result
-/home/luis/masters/bifasico/result/
-/home/luis/masters/bifasico/result/*
+/.idea/*
+/.idea
+/.gitignore~
+/bifasico/results
+/bifasico/results/*
+/bifasico/results/
+/bifasico/results/**
 
 /codigos/in-dev/temp/results/*
 
