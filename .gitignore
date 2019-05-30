@@ -1,13 +1,13 @@
 /mcf2/ex1/results
 /mcf2/ex1/results/**
 
-/.idea/*
-/.idea
-/.gitignore~
-/bifasico/results
-/bifasico/results/*
-/bifasico/results/
-/bifasico/results/**
+.idea/*
+.idea
+.gitignore~
+bifasico/results
+bifasico/results/*
+bifasico/results/
+bifasico/results/**
 
 /codigos/in-dev/temp/results/*
 
