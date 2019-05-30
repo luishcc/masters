@@ -38,7 +38,7 @@ def defPlot(_xp, _yp, _n, _u, _yf, L, t):
 # --------------------------------------------------
 #   Problem Parameters
 
-dt = 0.05
+dt = 0.005
 dt_inv = 1 / dt
 tempo = 400
 g = 9.81
@@ -49,7 +49,7 @@ rho_fld = 1000.0
 grad_p = -12.
 
 # particle
-rho_part = 50.0
+rho_part = 700.0
 radius = 0.0005
 diameter = 2 * radius
 volume = (4/3.) * sp.pi * radius**3
@@ -177,7 +177,7 @@ for t in range(tempo):
     u = sp.linalg.solve(LHS, RHS)
 
     for i in range(nodes):
-        u[i] = (6/(h**2)) * (x[i] * h - x[i]**2)
+        u[i] = (60/(h**2)) * (x[i] * h - x[i]**2)
 
     # Interpolate fluid velocity at n+1 and n time step
     u_last_interp = sp.interpolate.interp1d(x, u_last, fill_value=0, bounds_error=False)

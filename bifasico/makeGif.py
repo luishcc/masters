@@ -17,6 +17,7 @@ def create_gif(filenames, duration):
 	for filename in filenames:
 		images.append(imageio.imread(filename))
 	output_file = 'Gif-%s.gif' % datetime.datetime.now().strftime('%Y-%M-%d-%H-%M-%S')
+	os.chdir(cwd)
 	imageio.mimsave(output_file, images, duration=duration)
 
 if __name__ == "__main__":
