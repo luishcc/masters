@@ -6,6 +6,9 @@
 /home/luis/masters/.gitignore~
 /home/luis/masters/bifasico/results
 /home/luis/masters/bifasico/results/*
+/home/luis/masters/bifasico/result
+/home/luis/masters/bifasico/result/
+/home/luis/masters/bifasico/result/*
 
 /codigos/in-dev/temp/results/*
 

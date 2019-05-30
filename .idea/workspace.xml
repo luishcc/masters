@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bifasico/main3D.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/foo.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/forces.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/forces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/main2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/main2D.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/main2D.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/main2D.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,16 +16,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bifasico/main2D.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="176" column="4" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
+            <state relative-caret-position="-2052">
+              <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
-                <element signature="e#731#813#0" />
-                <element signature="e#1044#1192#0" />
-                <element signature="e#1266#1330#0" />
-                <element signature="e#2142#2150#0" />
-                <element signature="e#2172#2180#0" />
-                <element signature="e#2199#2207#0" />
               </folding>
             </state>
           </provider>
@@ -38,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bifasico/main3D.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1338">
-              <caret line="51" selection-start-line="51" selection-end-line="55" selection-end-column="50" />
+            <state relative-caret-position="238">
+              <caret line="142" column="46" selection-start-line="141" selection-start-column="4" selection-end-line="142" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -93,7 +83,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -110,6 +99,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -243,7 +233,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1210" height="873" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11710194" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -282,13 +271,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/main2.0.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1083">
-          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/main2.0.py" />
     <entry file="file://$PROJECT_DIR$/bifasico/libmalha.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3434">
@@ -318,23 +301,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/main3D.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1338">
-          <caret line="51" selection-start-line="51" selection-end-line="55" selection-end-column="50" />
+        <state relative-caret-position="238">
+          <caret line="142" column="46" selection-start-line="141" selection-start-column="4" selection-end-line="142" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/main2D.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="176" column="4" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
+        <state relative-caret-position="-2052">
+          <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
-            <element signature="e#731#813#0" />
-            <element signature="e#1044#1192#0" />
-            <element signature="e#1266#1330#0" />
-            <element signature="e#2142#2150#0" />
-            <element signature="e#2172#2180#0" />
-            <element signature="e#2199#2207#0" />
           </folding>
         </state>
       </provider>

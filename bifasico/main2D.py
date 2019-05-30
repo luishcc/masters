@@ -17,7 +17,7 @@ cwd = os.getcwd()
 # Definição da malha
 
 h = 1
-L = 10
+L = 5*h
 fine = 20
 coarse = 10
 d_fine = 0.2*h
@@ -33,16 +33,17 @@ x = sp.append(x, x_fine2)
 nodes = len(x)
 elem = nodes-1
 
-viscosity = 0.0091
+viscosity = 0.8e-3
 rho_fld = 1000.0
-rho_part = 2500.0
-grad_p = -120.
-dt = 0.01
-tempo = 100
+rho_part = 1000.0
+grad_p = -1200.
+dt = 0.001
+tempo = 2000
 g = 9.81
-radius = 0.005
+radius = 0.0005
 diameter = 2 * radius
 volume = (4/3.) * sp.pi * radius**3
+n_particule = 2
 
 
 
@@ -63,7 +64,7 @@ M = sp.zeros((nodes, nodes))
 
 
 for i in range(elem):
-    B[i:i+2] = B[i:i+2] + b * (-grad_p * dx[i] * 0.5)
+    B[i:i+2] = B[i:i+2] + b * ((-grad_p / rho_fld) * dx[i] * 0.5)
     M[i:i+2, i:i+2] = M[i:i+2, i:i+2] + m * (dx[i])/6
     K[i:i+2, i:i+2] = K[i:i+2, i:i+2] + k / dx[i]
 
@@ -92,13 +93,12 @@ Mdt_s = sp.delete(Mdt_s, elem-1, axis=0)
 Mdt_s = sp.delete(Mdt_s, elem-1, axis=1)
 
 
-n_particule = 4
 posx_particule = sp.zeros(n_particule)
 posy_particule = sp.zeros(n_particule)
 
 
 for i in range(n_particule):
-    posx_particule[i] = random.randint(1, 10)*0.01
+    posx_particule[i] = random.randint(1, 10)*0.1
     posy_particule[i] = random.randint(1, 99)*0.01
 
 vx_p = sp.zeros(n_particule)
@@ -124,6 +124,18 @@ fld_accx = sp.zeros(n_particule)
 fld_accy = sp.zeros(n_particule)
 vy_fld_last_big = sp.zeros(nodes)
 
+vx_fld_last_big = sp.insert(vx_fld_last, 0, v0)
+vx_fld_last_big = sp.insert(vx_fld_last_big, elem, vh)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+for i in range(n_particule):
+    ax.scatter(posx_particule[i], posy_particule[i])
+plt.plot(vx_fld_last_big, x, 'k')
+plt.xlim(-1, L + 1)
+plt.ylim(-0.1, 1.1)
+plt.savefig('test0.jpg', format='jpg')
+
 for t in range(tempo):
     RHS = sp.dot(Mdt_s, vx_fld_last) + B
     vx_fld_new = sp.linalg.solve(LHS, RHS)
@@ -132,67 +144,62 @@ for t in range(tempo):
     vx_fld_last_big = sp.insert(vx_fld_last, 0, v0)
     vx_fld_last_big = sp.insert(vx_fld_last_big, elem, vh)
 
-    velx_last_interp = sp.interpolate.interp1d(x, vx_fld_last_big)
-    vely_last_interp = sp.interpolate.interp1d(x, vy_fld_last_big)
+    velx_last_interp = sp.interpolate.interp1d(x, vx_fld_last_big, fill_value=0, bounds_error=False)
+    vely_last_interp = sp.interpolate.interp1d(x, vy_fld_last_big, fill_value=0, bounds_error=False)
 
     vx_fld_last = sp.copy(vx_fld_new)
 
     vx_fld = sp.insert(vx_fld_new, 0, v0)
     vx_fld = sp.insert(vx_fld, elem, vh)
 
-    velx_interp = sp.interpolate.interp1d(x, vx_fld)
-    vely_interp = sp.interpolate.interp1d(x, vy_fld)
+    velx_interp = sp.interpolate.interp1d(x, vx_fld, fill_value=0, bounds_error=False)
+    vely_interp = sp.interpolate.interp1d(x, vy_fld, fill_value=0, bounds_error=False)
 
 
     for i in range(0, n_particule):
 
-        fld_accx[i] = (velx_last_interp(posy_particule[i]) - velx_interp(posy_particule[i])) * dt
-        fld_accy[i] = (vely_last_interp(posy_particule[i]) - vely_interp(posy_particule[i])) * dt
+        fld_accx[i] = -1 * (velx_last_interp(posy_particule[i]) - velx_interp(posy_particule[i])) * dt
+        fld_accy[i] = -1 * (vely_last_interp(posy_particule[i]) - vely_interp(posy_particule[i])) * dt
 
         relative_velx = velx_interp(posy_particule[i]) - vx_p[i]
         relative_vely = vely_interp(posy_particule[i]) - vy_p[i]
 
-        f_dragx[i] = 3 * sp.pi * viscosity * 2 * radius * relative_velx
-        f_dragy[i] = 3 * sp.pi * viscosity * 2 * radius * relative_vely
+        f_dragx[i] = 3 * sp.pi * viscosity * diameter * relative_velx
+        f_dragy[i] = 3 * sp.pi * viscosity * diameter * relative_vely
 
         f_massx[i] = 0.5 * rho_fld * volume * fld_accx[i]
         f_massy[i] = 0.5 * rho_fld * volume * fld_accy[i]
 
-        f_lift[i] = 1.61 * sp.sqrt(viscosity * rho_part) * (diameter**2) * abs(relative_velx)
+        du_dy = (velx_interp(posy_particule[i]+radius) - velx_interp(posy_particule[i]-radius)) / diameter
+        f_lift[i] = 1.61 * sp.sqrt(viscosity * rho_part) * (diameter**2) * abs(relative_velx) \
+                    * du_dy * sp.sqrt(abs(du_dy))
 
-        vy_p[i] = vy_p_last[i] + (f_g[i] + f_lift[i] + f_dragy[i] + f_massy[i]) * constant
-        vx_p[i] = vx_p_last[i - 1] + (f_dragx[i] + f_massx[i]) * constant
+        vy_p[i] = vy_p_last[i] + (- f_g[i] + f_lift[i] - f_dragy[i] + f_massy[i]) * constant
+        vx_p[i] = vx_p_last[i] + (f_dragx[i] + f_massx[i]) * constant
 
-        print (f_g[i] + f_lift[i] + f_dragy[i] + f_massy[i])
+        print f_g[i] ,  f_lift[i] , f_dragy[i] , f_massy[i]
 
-        posx_particule[i] = vx_p[i] * dt + posx_particule[i - 1]
-        posy_particule[i] = vy_p[i] * dt + posy_particule[i - 1]
+        posx_particule[i] = vx_p[i] * dt + posx_particule[i]
+        posy_particule[i] = vy_p[i] * dt + posy_particule[i]
 
-        if posy_particule[i] < 0 or posy_particule[i] > h:
+        if posy_particule[i] < 0:
+            posy_particule[i] = 0.0 + radius
+            vy_p[i] = -vy_p[i]
+        if posy_particule[i] > h:
+            posy_particule[i] = h - radius
             vy_p[i] = -vy_p[i]
         if posx_particule[i] > L:
             posx_particule[i] = posx_particule[i] - L
 
+        vx_p_last[i] = vx_p[i]
+        vy_p_last[i] = vy_p[i]
 
-    ax = plt.figure(t)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
     for i in range(n_particule):
-        ax.scatter(posx_particule[i], posy_particule[i], 'k.')
-    plt.xlim(-1, 11)
+        ax.scatter(posx_particule[i], posy_particule[i])
+    plt.plot(vx_fld, x, 'k')
+    plt.xlim(-1, L+1)
     plt.ylim(-0.1, 1.1)
-    plt.savefig('test'+str(t)+'.jpg', format='jpg')
+    plt.savefig('test'+str(t+1)+'.jpg', format='jpg')
 
-
-def virtualMass():
-
-
-
-    return f
-
-
-def lift():
-
-    return f
-
-def drag():
-
-    return f
