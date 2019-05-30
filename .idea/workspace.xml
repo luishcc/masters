@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/masters.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/masters.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bifasico/main2D.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/main2D.py" afterDir="false" />
     </list>
@@ -13,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bifasico/main2D.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2052">
-              <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
+            <state relative-caret-position="-522">
+              <caret line="154" column="25" selection-start-line="154" selection-start-column="25" selection-end-line="154" selection-end-column="25" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
@@ -25,11 +26,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bifasico/main3D.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bifasico/makeGif.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="142" column="46" selection-start-line="141" selection-start-column="4" selection-end-line="142" selection-end-column="46" />
+            <state relative-caret-position="294">
+              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,12 +53,16 @@
       <find>np.</find>
       <find>KM</find>
       <find>i</find>
+      <find>particule</find>
+      <find>f_massx</find>
     </findStrings>
     <replaceStrings>
       <replace>nodes</replace>
       <replace>sp.</replace>
       <replace>LHS</replace>
       <replace>t</replace>
+      <replace>particle</replace>
+      <replace>f_mass_partialx</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -70,6 +78,7 @@
         <option value="$PROJECT_DIR$/bifasico/test.py" />
         <option value="$PROJECT_DIR$/bifasico/main2.0.py" />
         <option value="$PROJECT_DIR$/bifasico/main2D.py" />
+        <option value="$PROJECT_DIR$/bifasico/makeGif.py" />
       </list>
     </option>
   </component>
@@ -124,7 +133,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main2D">
+  <component name="RunManager" selected="Python.makeGif">
     <configuration name="forces" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="masters" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -188,6 +197,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="makeGif" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="masters" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/makeGif.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="masters" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -211,6 +241,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.makeGif" />
         <item itemvalue="Python.main2D" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.forces" />
@@ -233,6 +264,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1210" height="873" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11710194" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -252,6 +284,17 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/bifasico/main2D.py</url>
+          <line>190</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/bifasico/InOut.py">
@@ -306,12 +349,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mcf2/ex1/heatEx1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1882" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/main2D.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2052">
-          <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
+        <state relative-caret-position="-522">
+          <caret line="154" column="25" selection-start-line="154" selection-start-column="25" selection-end-line="154" selection-end-column="25" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/makeGif.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

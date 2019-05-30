@@ -1,28 +1,84 @@
 # -*- coding: utf-8 -*-
 import scipy as sp
 from scipy import linalg
-import InOut as io
-import semiLagrangean as sl
-import libmalha as lm
-import GMesh as gm
 import os
-import forces as ff
 import random
 from scipy import interpolate
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+import sys
+import shutil
 
 cwd = os.getcwd()
+if os.path.isdir(cwd+'/result') == True:
+    shutil.rmtree(cwd+'/result')
 
-# Definição da malha
+os.mkdir(cwd+'/result')
 
-h = 1
-L = 5*h
+
+# --------------------------------------------------
+# Plot function
+def defPlot(_xp, _yp, _n, _u, _yf, L, t):
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    # ax2 = fig.add_subplot(1,2,2)
+    for i in range(_n):
+        ax.scatter(_xp[i], _yp[i])
+    ax.plot(_u, _yf, 'b')
+    ax.plot([0, L], [0, 0], 'k-')
+    ax.plot([0, L], [1, 1], 'k-')
+    ax.plot([0, L], [0.5, 0.5], 'r--')
+    ax.plot([0, 0], [0, 1], 'k--')
+    ax.plot([L, L], [0, 1], 'k--')
+    ax.set_xlim(-1, L + 1)
+    ax.set_ylim(-0.1, 1.1)
+    plt.savefig('result/test' + str(t) + '.jpg', format='jpg')
+    return
+
+
+# --------------------------------------------------
+#   Problem Parameters
+
+dt = 0.05
+dt_inv = 1 / dt
+tempo = 400
+g = 9.81
+
+# fluid
+viscosity = 0.8e-3
+rho_fld = 1000.0
+grad_p = -12.
+
+# particle
+rho_part = 50.0
+radius = 0.0005
+diameter = 2 * radius
+volume = (4/3.) * sp.pi * radius**3
+
+constant = dt / ((rho_part + 0.5 * rho_fld) * volume)
+
+# --------------------------------------------------
+#   particle Generation
+
+n_particle = 1
+
+posx_particle = sp.zeros(n_particle)
+posy_particle = sp.zeros(n_particle)
+
+for i in range(n_particle):
+    posx_particle[i] = random.randint(1, 10)*0.1
+    posy_particle[i] = random.randint(1, 99)*0.01
+
+# posy_particle[0] = 0.3
+
+# --------------------------------------------------
+#   Fluid Mesh and Matrices Generation
+
+h = 1   # Duct height
+L = 5*h     # Duct length
 fine = 20
 coarse = 10
 d_fine = 0.2*h
 d_coarse = 0.8*h
-
 
 x_fine = sp.linspace(0, d_fine, fine, endpoint=False)
 x_coarse = sp.linspace(d_fine, d_coarse, coarse, endpoint=False)
@@ -30,176 +86,153 @@ x_fine2 = sp.linspace(d_coarse, h, fine+1)
 x = sp.append(x_fine, x_coarse)
 x = sp.append(x, x_fine2)
 
+# x = sp.linspace(0, h, 10)
+
 nodes = len(x)
 elem = nodes-1
-
-viscosity = 0.8e-3
-rho_fld = 1000.0
-rho_part = 1000.0
-grad_p = -1200.
-dt = 0.001
-tempo = 2000
-g = 9.81
-radius = 0.0005
-diameter = 2 * radius
-volume = (4/3.) * sp.pi * radius**3
-n_particule = 2
-
-
 
 ien = sp.zeros((elem, 2), dtype='int32')
 dx = sp.zeros(elem)
 for i in range(0, elem):
     dx[i] = abs(x[i+1] - x[i])
     for j in [0, 1]:
-        ien[i, j] = int(i + j + 1)
+        ien[i, j] = int(i + j)
 
-k = sp.array([[1,-1], [-1,1]])
+
+k = sp.array([[1, -1], [-1, 1]])
 m = sp.array([[2, 1], [1, 2]])
-b = sp.array([1,1])
-
+b = sp.array([1, 1])
 B = sp.zeros(nodes)
 K = sp.zeros((nodes, nodes))
 M = sp.zeros((nodes, nodes))
 
+for elem in range(elem):
+    for i_local in range(2):
+        i_global = ien[elem, i_local]
+        B[i_global] += b[i_local] * ((-grad_p / rho_fld) * dx[i] * 0.5)
+        for j_local in range(2):
+            j_global = ien[elem, j_local]
+            K[i_global, j_global] += k[i_local, j_local] / dx[i_local]
+            M[i_global, j_global] += m[i_local, j_local] * (dx[i_local])/6
 
-for i in range(elem):
-    B[i:i+2] = B[i:i+2] + b * ((-grad_p / rho_fld) * dx[i] * 0.5)
-    M[i:i+2, i:i+2] = M[i:i+2, i:i+2] + m * (dx[i])/6
-    K[i:i+2, i:i+2] = K[i:i+2, i:i+2] + k / dx[i]
 
-Mdt = M / dt
+# --------------------------------------------------
+#   Fluid Dirichlet Boundary Condition and System Definition
+
+Mdt = M * dt_inv
 LHS = Mdt + viscosity * K
 
 v0 = 0
 vh = 0
 
+LHS_copy = sp.copy(LHS)
 for i in range(nodes):
-    B[i] = B[i] - v0 * LHS[i, 0]
-    B[i] = B[i] - vh * LHS[i, elem]
+    B[i] = B[i] - v0 * LHS_copy[i, 0]
+    B[i] = B[i] - vh * LHS_copy[i, elem]
+    LHS[0, i] = 0
+    LHS[i, 0] = 0
+    LHS[elem, i] = 0
+    LHS[i, elem] = 0
+
+B[0] = v0
+B[elem] = vh
+LHS[0,0] = 1
+LHS[elem,elem] = 1
 
 
-LHS = sp.delete(LHS, 0, axis=0)
-LHS = sp.delete(LHS, 0, axis=1)
-LHS = sp.delete(LHS, elem-1, axis=0)
-LHS = sp.delete(LHS, elem-1, axis=1)
-B = sp.delete(B, 0, axis=0)
-B = sp.delete(B, elem-1, axis=0)
+# --------------------------------------------------
+#   Allocating Fluid and Particle Variables
 
-v_last = sp.zeros(nodes-2)
-Mdt_s = sp.delete(Mdt, 0, axis=0)
-Mdt_s = sp.delete(Mdt_s, 0, axis=1)
-Mdt_s = sp.delete(Mdt_s, elem-1, axis=0)
-Mdt_s = sp.delete(Mdt_s, elem-1, axis=1)
+# fluid velocity (and acceleration in x direction)
+u_last = sp.zeros(nodes)
+u = sp.zeros(nodes)
+
+fld_accx = sp.zeros(n_particle)
 
 
-posx_particule = sp.zeros(n_particule)
-posy_particule = sp.zeros(n_particule)
+# particle velocity
+vx = sp.zeros(n_particle)
+vy = sp.zeros(n_particle)
+vx_last = sp.zeros(n_particle)
+vy_last = sp.zeros(n_particle)
 
+# particle forces
+f_g = sp.ones(n_particle) * rho_part * volume * g       # constant gravity
+f_dragx = sp.zeros(n_particle)
+f_dragy = sp.zeros(n_particle)
+f_mass_partialx = sp.zeros(n_particle)                  # f_mass_partialy = 0 because fluid velocity uy = 0
+f_lift = sp.zeros(n_particle)                           # Only act on y direction
 
-for i in range(n_particule):
-    posx_particule[i] = random.randint(1, 10)*0.1
-    posy_particule[i] = random.randint(1, 99)*0.01
+# f_g = sp.zeros(n_particle)
 
-vx_p = sp.zeros(n_particule)
-vy_p = sp.zeros(n_particule)
-vy_p_last = sp.zeros(n_particule)
-vx_p_last = sp.zeros(n_particule)
+# --------------------------------------------------
+# --------------------------------------------------
 
-constant = dt / ((rho_part + 0.5 * rho_fld) * volume)
+# ---------   Beginning of Time Loop  --------------
 
-f_g = sp.ones(n_particule) * rho_part * volume * g
-f_dragx = sp.zeros(n_particule)
-f_dragy = sp.zeros(n_particule)
-f_massx = sp.zeros(n_particule)
-f_massy = sp.zeros(n_particule)
-f_lift = sp.zeros(n_particule)
-
-vx_fld_last = sp.zeros(nodes-2)
-
-vy_fld = sp.zeros(nodes)
-vy_fld_last = sp.zeros(nodes)
-
-fld_accx = sp.zeros(n_particule)
-fld_accy = sp.zeros(n_particule)
-vy_fld_last_big = sp.zeros(nodes)
-
-vx_fld_last_big = sp.insert(vx_fld_last, 0, v0)
-vx_fld_last_big = sp.insert(vx_fld_last_big, elem, vh)
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-for i in range(n_particule):
-    ax.scatter(posx_particule[i], posy_particule[i])
-plt.plot(vx_fld_last_big, x, 'k')
-plt.xlim(-1, L + 1)
-plt.ylim(-0.1, 1.1)
-plt.savefig('test0.jpg', format='jpg')
+defPlot(posx_particle, posy_particle, n_particle, u, x, L, 0)      # Plot initial condition
 
 for t in range(tempo):
-    RHS = sp.dot(Mdt_s, vx_fld_last) + B
-    vx_fld_new = sp.linalg.solve(LHS, RHS)
+    RHS = sp.dot(Mdt, u_last) + B
+    u = sp.linalg.solve(LHS, RHS)
 
+    for i in range(nodes):
+        u[i] = (6/(h**2)) * (x[i] * h - x[i]**2)
 
-    vx_fld_last_big = sp.insert(vx_fld_last, 0, v0)
-    vx_fld_last_big = sp.insert(vx_fld_last_big, elem, vh)
+    # Interpolate fluid velocity at n+1 and n time step
+    u_last_interp = sp.interpolate.interp1d(x, u_last, fill_value=0, bounds_error=False)
+    u_interp = sp.interpolate.interp1d(x, u, fill_value=0, bounds_error=False)
 
-    velx_last_interp = sp.interpolate.interp1d(x, vx_fld_last_big, fill_value=0, bounds_error=False)
-    vely_last_interp = sp.interpolate.interp1d(x, vy_fld_last_big, fill_value=0, bounds_error=False)
+    for i in range(0, n_particle):
 
-    vx_fld_last = sp.copy(vx_fld_new)
+        # get fluid velocity at particle position
+        u_n0 = u_last_interp(posy_particle[i])
+        u_n1 = u_interp(posy_particle[i])
+        fld_accx[i] = (u_n1 - u_n0) * dt
 
-    vx_fld = sp.insert(vx_fld_new, 0, v0)
-    vx_fld = sp.insert(vx_fld, elem, vh)
+        # relative velocity between fluid and particle
+        relative_velx = u_n0 - vx[i]
+        relative_vely = -1 * vy[i]
+        abs_relative_vel = sp.sqrt(relative_velx**2 + relative_vely**2)
 
-    velx_interp = sp.interpolate.interp1d(x, vx_fld, fill_value=0, bounds_error=False)
-    vely_interp = sp.interpolate.interp1d(x, vy_fld, fill_value=0, bounds_error=False)
-
-
-    for i in range(0, n_particule):
-
-        fld_accx[i] = -1 * (velx_last_interp(posy_particule[i]) - velx_interp(posy_particule[i])) * dt
-        fld_accy[i] = -1 * (vely_last_interp(posy_particule[i]) - vely_interp(posy_particule[i])) * dt
-
-        relative_velx = velx_interp(posy_particule[i]) - vx_p[i]
-        relative_vely = vely_interp(posy_particule[i]) - vy_p[i]
-
+        # Compute forces
         f_dragx[i] = 3 * sp.pi * viscosity * diameter * relative_velx
         f_dragy[i] = 3 * sp.pi * viscosity * diameter * relative_vely
 
-        f_massx[i] = 0.5 * rho_fld * volume * fld_accx[i]
-        f_massy[i] = 0.5 * rho_fld * volume * fld_accy[i]
+        f_mass_partialx[i] = 0.5 * rho_fld * volume * fld_accx[i]
 
-        du_dy = (velx_interp(posy_particule[i]+radius) - velx_interp(posy_particule[i]-radius)) / diameter
-        f_lift[i] = 1.61 * sp.sqrt(viscosity * rho_part) * (diameter**2) * abs(relative_velx) \
-                    * du_dy * sp.sqrt(abs(du_dy))
+        du_dy = (u_last_interp(posy_particle[i]+radius) - u_last_interp(posy_particle[i]-radius)) / diameter
+        f_lift[i] = 1.61 * sp.sqrt(viscosity * rho_fld * abs(du_dy)) * (diameter**2) * abs_relative_vel * du_dy
 
-        vy_p[i] = vy_p_last[i] + (- f_g[i] + f_lift[i] - f_dragy[i] + f_massy[i]) * constant
-        vx_p[i] = vx_p_last[i] + (f_dragx[i] + f_massx[i]) * constant
+        # Update particle velocity
+        vy[i] = vy_last[i] + (f_lift[i] - f_g[i] + f_dragy[i]) * constant
+        vx[i] = vx_last[i] + (f_mass_partialx[i] + f_dragx[i]) * constant
 
-        print f_g[i] ,  f_lift[i] , f_dragy[i] , f_massy[i]
+        print f_g[i],  f_lift[i], f_dragy[i], f_dragx[i], f_mass_partialx[i]
 
-        posx_particule[i] = vx_p[i] * dt + posx_particule[i]
-        posy_particule[i] = vy_p[i] * dt + posy_particule[i]
+        # Update particle position
+        posx_particle[i] = vx[i] * dt + posx_particle[i]
+        posy_particle[i] = vy[i] * dt + posy_particle[i]
 
-        if posy_particule[i] < 0:
-            posy_particule[i] = 0.0 + radius
-            vy_p[i] = -vy_p[i]
-        if posy_particule[i] > h:
-            posy_particule[i] = h - radius
-            vy_p[i] = -vy_p[i]
-        if posx_particule[i] > L:
-            posx_particule[i] = posx_particule[i] - L
+        # Check if particle is inside limits
+        if posy_particle[i] < 0:
+            posy_particle[i] = 0.0 #+ radius * 1.001
+            vy[i] = -vy[i]
+        if posy_particle[i] > h:
+            posy_particle[i] = h #- radius * 1.001
+            vy[i] = -vy[i]
+        if posx_particle[i] > L:
+            posx_particle[i] = posx_particle[i] - L
 
-        vx_p_last[i] = vx_p[i]
-        vy_p_last[i] = vy_p[i]
+        vx_last[i] = vx[i]
+        vy_last[i] = vy[i]
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    for i in range(n_particule):
-        ax.scatter(posx_particule[i], posy_particule[i])
-    plt.plot(vx_fld, x, 'k')
-    plt.xlim(-1, L+1)
-    plt.ylim(-0.1, 1.1)
-    plt.savefig('test'+str(t+1)+'.jpg', format='jpg')
+    u_last = sp.copy(u)
+
+    defPlot(posx_particle, posy_particle, n_particle, u, x, L, t+1)
+
+# ---------   End of Time Loop   -------------------
+
+# --------------------------------------------------
+# --------------------------------------------------
 
