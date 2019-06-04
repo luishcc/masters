@@ -3,12 +3,13 @@ import scipy as sp
 from scipy import linalg
 import os
 import sys
-import shutil
 import csv
+import matrix as ma
 
 cwd = os.getcwd()
-if os.path.isfile(cwd+'/flowResult.csv') == True:
-    os.remove(cwd+'/flowResult.csv')
+
+type = 'laminar'
+# type = 'turbulent'
 
 
 # --------------------------------------------------
@@ -23,6 +24,9 @@ rho_fld = 1000.0
 viscosity_din = 0.8e-3
 viscosity_kin = viscosity_din / rho_fld
 grad_p = -12.
+
+v0 = 0
+vh = 0
 
 
 # --------------------------------------------------
@@ -54,61 +58,54 @@ for i in range(0, elem):
         ien[i, j] = int(i + j)
 
 
-k = sp.array([[1, -1], [-1, 1]])
-m = sp.array([[2, 1], [1, 2]])
-b = sp.array([1, 1])
-B = sp.zeros(nodes)
-K = sp.zeros((nodes, nodes))
-M = sp.zeros((nodes, nodes))
 
-for elem in range(elem):
-    for i_local in range(2):
-        i_global = ien[elem, i_local]
-        B[i_global] += b[i_local] * ((-grad_p / rho_fld) * dx[elem] * 0.5)
-        for j_local in range(2):
-            j_global = ien[elem, j_local]
-            M[i_global, j_global] += m[i_local, j_local] * (dx[elem])/6
+BC = sp.array([v0, vh])
 
-Mdt = M * dt_inv
+if type == 'laminar':
+    LHS, B, Mdt = ma.laminarMatrix(ien, dx, dt, viscosity_kin, BC, nodes, (-grad_p / rho_fld))
+
+if type == 'turbulent':
+
+    viscosity_turb = sp.zeros(elem)
+    k = sp.array([[1, -1], [-1, 1]])
+    m = sp.array([[2, 1], [1, 2]])
+    b = sp.array([1, 1])
+    B = sp.zeros(nodes)
+    M = sp.zeros((nodes, nodes))
+
+    for elem in range(elem):
+        for i_local in range(2):
+            i_global = _ien[elem, i_local]
+            B[i_global] += b[i_local] * ((-grad_p / rho_fld) * _dx[elem] * 0.5)
+            for j_local in range(2):
+                j_global = _ien[elem, j_local]
+                M[i_global, j_global] += m[i_local, j_local] * (_dx[elem]) / 6
+    Mdt = M * dt_inv
+
 
 # --------------------------------------------------
 #   Allocating Fluid  Variables
 
 u_last = sp.zeros(nodes)
 u = sp.zeros(nodes)
-viscosity_turb = sp.zeros(elem)
 
 
 # --------------------------------------------------
 # --------------------------------------------------
 # ---------   Beginning of Time Loop  --------------
 
+with open('flowResult.csv', mode='w') as flowResult:
+    writer = csv.writer(flowResult, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow([x])
 
 for t in range(tempo):
-
     with open('flowResult.csv', mode='a') as flowResult:
         writer = csv.writer(flowResult, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         writer.writerow([t, u_last])
 
-    for elem in range(elem):
-        for i_local in range(2):
-            i_global = ien[elem, i_local]
-            for j_local in range(2):
-                j_global = ien[elem, j_local]
-                K[i_global, j_global] += k[i_local, j_local] * (viscosity_kin + viscosity_turb[elem]) / dx[elem]
-
-    #  Dirichlet Boundary Condition and System Definition
-    LHS = Mdt + K
-    v0 = 0
-    vh = 0
-    LHS_copy = sp.copy(LHS)
-    for i in range(nodes):
-        B[i] = B[i] - v0 * LHS_copy[i, 0]
-        B[i] = B[i] - vh * LHS_copy[i, -1]
-        LHS[0, i] = 0
-        LHS[i, 0] = 0
-        LHS[-1, i] = 0
-        LHS[i, -1] = 0
+    if type == 'turbulent':
+        viscosity_turb = getViscosity()
+        LHS, B = ma.turbulentMatrix(ien, dx, k, Mdt, B, viscosity_kin, viscosity_turb, BC)
 
     B[0] = v0
     B[-1] = vh
@@ -117,30 +114,18 @@ for t in range(tempo):
 
     u_last[0] = v0
     u_last[-1] = vh
+
     RHS = sp.dot(Mdt, u_last) + B
     RHS[0] = v0
     RHS[-1] = vh
     u = sp.linalg.solve(LHS, RHS)
+
     u_last = sp.copy(u)
-
-
-    # for i in range(nodes):
-    #     u[i] = (6/(h**2)) * (x[i] * h - x[i]**2)
-
-
 
 # ---------   End of Time Loop   -------------------
 # --------------------------------------------------
 # --------------------------------------------------
 
-# with open('flowResult.csv') as csv_file:
-#     csv_reader = csv.reader(csv_file, delimiter=',')
-#     line_count = 0
-#     for row in csv_reader:
-#         if line_count == 0:
-#             print(f'Column names are {", ".join(row)}')
-#             line_count += 1
-#         else:
-#             print(f'\t{row[0]} , {row[1][500]} ')
-#             line_count += 1
-#     print(f'Processed {line_count} lines.')
+with open('flowResult.csv', mode='a') as flowResult:
+    writer = csv.writer(flowResult, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow([t+1, u_last])

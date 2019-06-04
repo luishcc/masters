@@ -8,11 +8,23 @@ import matplotlib.pyplot as plt
 import sys
 import shutil
 
+
 cwd = os.getcwd()
 if os.path.isdir(cwd+'/result') == True:
     shutil.rmtree(cwd+'/result')
 
+if os.path.isfile(cwd+'/flowResult.csv') == False:
+    print "Runnig Flow.py"
+    import flow
+
+# import flow
+
+
+if os.path.isfile(cwd+'/flow.pyc') == True:
+    os.remove(cwd+'/flow.pyc')
+
 os.mkdir(cwd+'/result')
+exit()
 
 
 # --------------------------------------------------
