@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/masters.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/masters.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowResult.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flowResult.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/flow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowResult.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/graphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/graphic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/main2D.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/matrix.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bifasico/2D/particle.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/particle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/main2D.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/main2D.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,35 +18,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bifasico/2D/flow.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="106" column="25" selection-start-line="106" selection-start-column="25" selection-end-line="106" selection-end-column="25" />
-              <folding>
-                <element signature="e#24#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bifasico/2D/matrix.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
+            <state relative-caret-position="442">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bifasico/2D/particle.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bifasico/2D/flowT.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-              <folding>
-                <element signature="e#24#42#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="17">
+              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -71,6 +57,7 @@
       <find>dx</find>
       <find>ien</find>
       <find>nodes</find>
+      <find>flowResult</find>
     </findStrings>
     <replaceStrings>
       <replace>nodes</replace>
@@ -83,6 +70,7 @@
       <replace>_dx</replace>
       <replace>_ien</replace>
       <replace>_nodes</replace>
+      <replace>flowResultT</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -99,10 +87,13 @@
         <option value="$PROJECT_DIR$/bifasico/main2.0.py" />
         <option value="$PROJECT_DIR$/bifasico/main3D-new.py" />
         <option value="$PROJECT_DIR$/bifasico/makeGif.py" />
-        <option value="$PROJECT_DIR$/bifasico/main2D.py" />
         <option value="$PROJECT_DIR$/bifasico/2D/particle.py" />
-        <option value="$PROJECT_DIR$/bifasico/2D/matrix.py" />
+        <option value="$PROJECT_DIR$/bifasico/main2D.py" />
         <option value="$PROJECT_DIR$/bifasico/2D/flow.py" />
+        <option value="$PROJECT_DIR$/bifasico/2D/graphic.py" />
+        <option value="$PROJECT_DIR$/bifasico/2D/flowL.py" />
+        <option value="$PROJECT_DIR$/bifasico/2D/matrix.py" />
+        <option value="$PROJECT_DIR$/bifasico/2D/flowT.py" />
       </list>
     </option>
   </component>
@@ -163,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.flow">
+  <component name="RunManager" selected="Python.flowT">
     <configuration name="flow" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="masters" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -177,6 +168,69 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/2D/flow.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="flowL" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="masters" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico/2D" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/2D/flowL.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="flowT" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="masters" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico/2D" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/2D/flowT.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="graphic" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="masters" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico/2D" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/2D/graphic.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -206,76 +260,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="makeGif" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="masters" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/makeGif.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="matrix" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="masters" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico/2D" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/2D/matrix.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="particle" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="masters" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico/2D" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/2D/particle.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.flow" />
-        <item itemvalue="Python.matrix" />
-        <item itemvalue="Python.particle" />
+        <item itemvalue="Python.flowT" />
+        <item itemvalue="Python.flowL" />
+        <item itemvalue="Python.graphic" />
         <item itemvalue="Python.main2D" />
-        <item itemvalue="Python.makeGif" />
+        <item itemvalue="Python.flow" />
       </list>
     </recent_temporary>
   </component>
@@ -314,17 +305,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/bifasico/main2D.py</url>
-          <line>214</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/bifasico/InOut.py" />
@@ -393,27 +373,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/main2D.py">
+    <entry file="file://$PROJECT_DIR$/bifasico/2D/main2D.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="19" column="41" lean-forward="true" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/2D/particle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="12" selection-end-column="34" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/2D/matrix.py">
+    <entry file="file:///usr/lib/python2.7/dist-packages/numpy/lib/scimath.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
+        <state relative-caret-position="157">
+          <caret line="261" selection-start-line="261" selection-end-line="261" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/2D/particle.py">
+    <entry file="file://$PROJECT_DIR$/bifasico/main2D.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="1552">
+          <caret line="187" column="21" lean-forward="true" selection-start-line="187" selection-start-column="21" selection-end-line="188" selection-end-column="25" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
@@ -422,11 +409,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/2D/flow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="106" column="25" selection-start-line="106" selection-start-column="25" selection-end-line="106" selection-end-column="25" />
+        <state relative-caret-position="90">
+          <caret line="144" column="13" lean-forward="true" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/2D/graphic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+          <folding>
+            <element signature="e#24#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/2D/flowL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/2D/matrix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/2D/flowT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
         </state>
       </provider>
     </entry>

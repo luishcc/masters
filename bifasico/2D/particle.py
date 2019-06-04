@@ -4,14 +4,11 @@ from scipy import linalg
 import os
 import random
 from scipy import interpolate
-import matplotlib.pyplot as plt
 import sys
-import shutil
 
 
 cwd = os.getcwd()
-if os.path.isdir(cwd+'/result') == True:
-    shutil.rmtree(cwd+'/result')
+
 
 if os.path.isfile(cwd+'/flowResult.csv') == False:
     print "Runnig Flow.py"
@@ -27,24 +24,6 @@ os.mkdir(cwd+'/result')
 exit()
 
 
-# --------------------------------------------------
-# Plot function
-def defPlot(_xp, _yp, _n, _u, _yf, L, t):
-    fig = plt.figure()
-    ax = fig.add_subplot(1,1,1)
-    # ax2 = fig.add_subplot(1,2,2)
-    for i in range(_n):
-        ax.scatter(_xp[i], _yp[i])
-    ax.plot(_u, _yf, 'b')
-    ax.plot([0, L], [0, 0], 'k-')
-    ax.plot([0, L], [1, 1], 'k-')
-    ax.plot([0, L], [0.5, 0.5], 'r--')
-    ax.plot([0, 0], [0, 1], 'k--')
-    ax.plot([L, L], [0, 1], 'k--')
-    ax.set_xlim(-1, L + 1)
-    ax.set_ylim(-0.1, 1.1)
-    plt.savefig('result/test' + str(t) + '.jpg', format='jpg')
-    return
 
 
 # --------------------------------------------------

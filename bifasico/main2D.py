@@ -31,7 +31,7 @@ def defPlot(_xp, _yp, _n, _u, _yf, L, t):
     ax.plot([L, L], [0, 1], 'k--')
     ax.set_xlim(-1, L + 1)
     ax.set_ylim(-0.1, 1.1)
-    plt.savefig('result/test' + str(t) + '.jpg', format='jpg')
+    plt.savefig('result2D/test' + str(t) + '.jpg', format='jpg')
     return
 
 
@@ -185,8 +185,8 @@ for t in range(tempo):
     RHS[-1] = vh
     u = sp.linalg.solve(LHS, RHS)
 
-    for i in range(nodes):
-        u[i] = (6/(h**2)) * (x[i] * h - x[i]**2)
+    # for i in range(nodes):
+    #     u[i] = (6/(h**2)) * (x[i] * h - x[i]**2)
 
     # Interpolate fluid velocity at n+1 and n time step
     u_last_interp = sp.interpolate.interp1d(x, u_last, fill_value=0, bounds_error=False)
@@ -249,10 +249,15 @@ for t in range(tempo):
 
     u_last = sp.copy(u)
 
-    defPlot(posx_particle, posy_particle, n_particle, u, x, L, t+1)
+    # defPlot(posx_particle, posy_particle, n_particle, u, x, L, t+1)
 
 # ---------   End of Time Loop   -------------------
 
 # --------------------------------------------------
 # --------------------------------------------------
+
+
+plt.figure(2)
+plt.plot(x, u)
+plt.show()
 
