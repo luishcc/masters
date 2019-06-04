@@ -1,4 +1,4 @@
-import os,sys
+import os, sys
 import datetime
 import imageio
 from pprint import pprint
@@ -9,7 +9,10 @@ e = sys.exit
  
 cwd = os.getcwd()
 
-os.chdir(cwd+'/result')
+newdir = cwd + '/result'
+# newdir = cwd + '/result3D'
+
+os.chdir(newdir)
 
 def create_gif(filenames, duration):
 	images = []
@@ -22,8 +25,8 @@ def create_gif(filenames, duration):
 
 if __name__ == "__main__":
 	script = sys.argv.pop(0)
-	duration = 0.1
-	filenames = sorted(filter(os.path.isfile, [x for x in os.listdir(cwd+'/result') if x.endswith(".jpg")]),
+	duration = 0.05
+	filenames = sorted(filter(os.path.isfile, [x for x in os.listdir(newdir) if x.endswith(".jpg")]),
 					   key=lambda p: os.path.exists(p) and os.stat(p).st_mtime or
 									 time.mktime(datetime.now().timetuple()))
 
