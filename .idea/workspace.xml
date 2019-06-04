@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowResult.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/graphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/graphic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/main2D.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/matrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/particle.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/particle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/main2D.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/main2D.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowResultT.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flowResultT.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowT.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flowT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/properties.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/properties.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/turbulent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/turbulent.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bifasico/2D/flowT.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+            <state relative-caret-position="170">
+              <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -443,8 +440,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/2D/flowT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        <state relative-caret-position="170">
+          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
         </state>
       </provider>
     </entry>
