@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scipy as sp
 from scipy import linalg
+from scipy.linalg import solve
 import os
 import sys
 import csv
@@ -14,13 +15,15 @@ cwd = os.getcwd()
 #   Problem Parameters
 
 dt = 10
-tempo = 10000
+tempo = 1000
+
 
 # fluid
 rho_fld = 1000.0
 viscosity_din = 0.8e-3
+viscosity_din = 0.8e-1
 viscosity_kin = viscosity_din / rho_fld
-grad_p = -12.
+grad_p = -12
 
 # boundary
 v0 = 0
@@ -34,7 +37,7 @@ vh = 0
 h = 1   # Duct height
 L = 5*h     # Duct length
 fine = 20
-coarse = 10
+coarse = 500
 d_fine = 0.15*h
 d_coarse = 0.8*h
 
@@ -59,8 +62,10 @@ for i in range(0, elem):
 
 k = sp.array([[1, -1], [-1, 1]])
 m = sp.array([[2, 1], [1, 2]])
+grad = sp.array([[-0.5, 0.5], [-0.5, 0.5]])
 Q = sp.ones(nodes) * (-grad_p / rho_fld)
 M = sp.zeros((nodes, nodes))
+G = sp.zeros((nodes, nodes))
 
 for e in range(elem):
     for i_local in range(2):
@@ -68,9 +73,10 @@ for e in range(elem):
         for j_local in range(2):
             j_global = ien[e, j_local]
             M[i_global, j_global] += m[i_local, j_local] * (dx[e]) / 6.
+            G[i_global, j_global] += grad[i_local, j_local]
 
 Mdt = M / dt
-
+M_inv = sp.linalg.inv(M)
 
 
 # --------------------------------------------------
@@ -87,6 +93,8 @@ t_wall = sp.zeros(nodes)
 u_t = sp.zeros(nodes)
 lc = sp.zeros(nodes)
 
+
+
 for i in range(nodes):
     if 0 <= x[i] <= 0.1 * h:
         lc[i] = 0.41 * x[i]
@@ -96,16 +104,10 @@ for i in range(nodes):
         lc[i] = 0.41 * 0.1 * h
 
 
-
-
-def getViscosity(_u):
-    for i in range(1, nodes-1):
-        du_dy[i] = (_u[i-1] - _u[i+1]) / (x[i+1] - x[i-1])
-    du_dy[0] = (-3 * u[0] + 4 * u[1] - u[2]) / (dx[0]+dx[1])
-    du_dy[-1] = (3 * u[-1] - 4 * u[-2] - u[-3]) / (dx[-1]+dx[-2])
-
+def getViscosity(_u, _lc):
+    du_dy = sp.dot(G, _u)
     for i in range(nodes):
-        viscosity_turb[i] = lc[i]**2 * abs(du_dy[i])
+        viscosity_turb[i] = _lc[i]**2 * abs(du_dy[i])
 
     return viscosity_turb, du_dy
 
@@ -130,7 +132,8 @@ for t in range(tempo):
     #     writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     #     writer.writerow(u_last)
 
-    viscosity_turb, du_dy = getViscosity(u_last)
+    viscosity_turb, du_dy = getViscosity(u_last, lc)
+    viscosity_turb = sp.dot(M_inv, viscosity_turb)
     K = sp.zeros((nodes, nodes))
     for e in range(elem):
         v1 = ien[e, 0]
@@ -140,7 +143,7 @@ for t in range(tempo):
             i_global = ien[e, i_local]
             for j_local in range(2):
                 j_global = ien[e, j_local]
-                K[i_global, j_global] += k[i_local, j_local] * (viscosity_kin + visc) * (dx[e]) / 6
+                K[i_global, j_global] += k[i_local, j_local] * (viscosity_kin + visc) * (1. / dx[e])
 
     LHS = Mdt + K
     cc = sp.zeros(nodes)
@@ -148,15 +151,15 @@ for t in range(tempo):
     t_wall2 = viscosity_din * abs(du_dy[0])
     u_t2 = sp.sqrt((t_wall2 / rho_fld))
     for i in range(nodes):
-        t_wall[i] = viscosity_din * abs(du_dy[i])
-        u_t[i] = sp.sqrt((t_wall[i] / rho_fld))
+        t_wall[i] = viscosity_kin * abs(du_dy[i])
+        # u_t[i] = sp.sqrt((t_wall[i] / rho_fld))
         # y_plus[i] = (u_t[i] * x[i]) / viscosity_kin
         y_plus[i] = (u_t2 * x[i]) / viscosity_kin
         # u_plus[i] = u_last[i] / u_t[i]
         u_plus[i] = u_last[i] / u_t2
-        u_plus_a[i] = (1./0.41) * sp.log(y_plus[i]) + 0.21
-        cc[i] = cc[i] - v0 * LHS_copy[i, 0]
-        cc[i] = cc[i] - vh * LHS_copy[i, -1]
+        u_plus_a[i] = (1./0.41) * sp.log(y_plus[i]) + 5.5
+        cc[i] -= v0 * LHS_copy[i, 0]
+        cc[i] -= vh * LHS_copy[i, -1]
         LHS[0, i] = 0
         LHS[i, 0] = 0
         LHS[-1, i] = 0
@@ -172,6 +175,8 @@ for t in range(tempo):
     RHS[-1] = vh
     u = sp.linalg.solve(LHS, RHS)
 
+    if t > 3 and sp.all(abs(u - u_last) < 10e-6):
+        break
     u_last = sp.copy(u)
 
 
@@ -196,8 +201,17 @@ with open('properties.csv', mode='w') as properties:
 plt.figure(1)
 plt.plot(x, u)
 
+# plt.figure(4)
+# plt.plot(lc, x)
+
+plt.figure(5)
+plt.plot(x, du_dy)
+
 plt.figure(3)
 plt.semilogx(y_plus[0:nodes/2], u_plus[0:nodes/2])
+plt.semilogx(y_plus[0:nodes/2], y_plus[0:nodes/2])
+plt.semilogx(y_plus[0:nodes/2], u_plus_a[0:nodes/2], 'k-')
+plt.xlim(1, 10**3)
 
 plt.figure(2)
 plt.plot(x, viscosity_turb)
