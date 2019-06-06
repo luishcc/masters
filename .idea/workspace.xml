@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowResultT.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flowResultT.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowT.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flowT.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/properties.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/properties.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/turbulent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/turbulent.csv" afterDir="false" />
-    </list>
+    <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,32 +10,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bifasico/2D/matrix.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bifasico/2D/flowT.py">
+        <entry file="file://$PROJECT_DIR$/../Dropbox/Mestrado/aulas/Computação Científica/ConjGrad/grad.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="155" column="53" lean-forward="true" selection-start-line="155" selection-start-column="53" selection-end-line="155" selection-end-column="53" />
+            <state relative-caret-position="335">
+              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
+                <element signature="e#723#1208#0" />
+                <element signature="e#903#1276#0" />
+                <element signature="e#1107#1549#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bifasico/2D/flow-Turb.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -106,13 +84,14 @@
         <option value="$PROJECT_DIR$/bifasico/2D/matrix.py" />
         <option value="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" />
         <option value="$PROJECT_DIR$/bifasico/2D/flowT.py" />
+        <option value="$PROJECT_DIR$/../Dropbox/Mestrado/aulas/Computação Científica/ConjGrad/grad.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1" />
     <option name="y" value="27" />
-    <option name="width" value="1210" />
+    <option name="width" value="936" />
     <option name="height" value="873" />
   </component>
   <component name="ProjectView">
@@ -167,28 +146,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.flowT">
-    <configuration name="flow" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="masters" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bifasico/2D" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/2D/flow.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.grad">
     <configuration name="flowL" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="masters" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -223,6 +181,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bifasico/2D/flowT.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="grad" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="masters" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Dropbox/Mestrado/aulas/Computação Científica/ConjGrad" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Dropbox/Mestrado/aulas/Computação Científica/ConjGrad/grad.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -275,11 +254,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.grad" />
         <item itemvalue="Python.flowT" />
         <item itemvalue="Python.flowL" />
         <item itemvalue="Python.graphic" />
         <item itemvalue="Python.main2D" />
-        <item itemvalue="Python.flow" />
       </list>
     </recent_temporary>
   </component>
@@ -297,9 +276,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="27" width="1210" height="873" extended-state="0" />
+    <frame x="1" y="27" width="936" height="873" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12805392" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12157722" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -438,10 +417,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/2D/flowT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="155" column="53" lean-forward="true" selection-start-line="155" selection-start-column="53" selection-end-line="155" selection-end-column="53" />
+        <state relative-caret-position="136">
+          <caret line="146" selection-start-line="146" selection-end-line="146" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/dist-packages/matplotlib/backends/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Dropbox/Mestrado/aulas/Computação Científica/ConjGrad/grad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+          <folding>
+            <element signature="e#24#42#0" expanded="true" />
+            <element signature="e#723#1208#0" />
+            <element signature="e#903#1276#0" />
+            <element signature="e#1107#1549#0" />
           </folding>
         </state>
       </provider>
