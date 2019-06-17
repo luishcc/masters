@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowResultT.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flowResultT.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/properties.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/properties.csv" afterDir="false" />
-    </list>
+    <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bifasico/2D/flow-Turb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="141" column="41" lean-forward="true" selection-start-line="141" selection-start-column="41" selection-end-line="141" selection-end-column="41" />
+            <state relative-caret-position="617">
+              <caret line="145" column="25" lean-forward="true" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -451,8 +447,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/2D/flow-Turb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="141" column="41" lean-forward="true" selection-start-line="141" selection-start-column="41" selection-end-line="141" selection-end-column="41" />
+        <state relative-caret-position="617">
+          <caret line="145" column="25" lean-forward="true" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
