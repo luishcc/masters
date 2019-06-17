@@ -29,7 +29,7 @@ vh = 0
 h = 1.0
 L = 8*h     # Duct length
 
-fine = 20
+fine = 1000
 coarse = 500
 d_fine = 0.15*h
 d_coarse = 0.85*h
@@ -40,7 +40,7 @@ y_fine2 = sp.linspace(d_coarse, h, fine+1)
 y = sp.append(y_fine, y_coarse)
 y = sp.append(y, y_fine2)
 
-y = sp.linspace(0, h, 10000)
+# y = sp.linspace(0, h, 10000)
 
 nodes = len(y)
 elem = nodes-1
@@ -71,8 +71,6 @@ for e in range(elem):
 
 Mdt = M / dt
 
-print "M inv"
-M_inv = sp.linalg.inv(M)
 
 
 # --------------------------------------------------
@@ -89,13 +87,22 @@ u_plus_a = sp.zeros(nodes)
 lc = sp.zeros(nodes)
 
 
+M_inv = sp.zeros(nodes)
+
 for i in range(nodes):
+    for j in range(nodes):
+        M_inv[i] += M[i, j]
     if 0 <= y[i] <= 0.1 * h:
         lc[i] = 0.41 * y[i]
     elif h >= y[i] >= 0.9 * h:
         lc[i] = 0.41 * (h - y[i])
     else:
         lc[i] = 0.41 * 0.1 * h
+
+    M_inv[i] = 1./M_inv[i]
+
+print "M inv lumped"
+
 
 
 
@@ -132,7 +139,7 @@ for t in range(tempo):
         u_plus_a[i] = (1. / 0.41) * sp.log(y_plus[i]) + 5.5
         viscosity_turb[i] = (lc[i]**2) * abs(du_dy[i])
 
-    # viscosity_turb = sp.dot(M_inv, viscosity_turb)  # TESTAR
+    # viscosity_turb = sp.multiply(M_inv, viscosity_turb)  # TESTAR
 
 
     K = sp.zeros((nodes, nodes))
@@ -194,8 +201,8 @@ with open('properties.csv', mode='w') as properties:
 plt.figure(1)
 plt.plot(y, u)
 
-# plt.figure(4)
-# plt.plot(lc, y)
+plt.figure(4)
+plt.plot(lc, y)
 
 plt.figure(5)
 plt.plot(y, du_dy)
