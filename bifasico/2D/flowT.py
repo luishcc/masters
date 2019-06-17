@@ -39,7 +39,7 @@ L = 5*h     # Duct length
 fine = 20
 coarse = 500
 d_fine = 0.15*h
-d_coarse = 0.8*h
+d_coarse = 0.85*h
 
 x_fine = sp.linspace(0, d_fine, fine, endpoint=False)
 x_coarse = sp.linspace(d_fine, d_coarse, coarse, endpoint=False)
@@ -47,7 +47,7 @@ x_fine2 = sp.linspace(d_coarse, h, fine+1)
 x = sp.append(x_fine, x_coarse)
 x = sp.append(x, x_fine2)
 
-x = sp.linspace(0, h, 100)
+x = sp.linspace(0, h, 10000)
 
 nodes = len(x)
 elem = nodes-1
