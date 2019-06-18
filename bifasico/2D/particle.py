@@ -3,6 +3,7 @@ import scipy as sp
 from scipy import linalg
 import os
 import random
+import time
 from scipy import interpolate
 import matplotlib.pyplot as plt
 import sys
@@ -33,7 +34,7 @@ def defPlot(_xp, _yp, _n, _u, _yf, L, t):
 
 flow = 'T'      # L - laminar; T - turbulent
 u = sp.loadtxt('flow-' + flow + '.csv', delimiter=',')
-u = u*5
+u[1:] = u[1:]*5
 
 fluid_properties = sp.loadtxt('prop-' + flow + '.csv', delimiter=',')
 # Order ->  0 dt, 1 tempo, 2 viscosity_din, 3 rho_fld, 4 viscosity_kin, 5 h, 6 L
@@ -177,6 +178,7 @@ for t in range(tempo):
     u_last_interp = u_interp
 
     defPlot(posx_particle, posy_particle, n_particle, u[t+1], u[0], L, t+1)
+    time.sleep(2)
 
 # ---------   End of Time Loop   -------------------
 
