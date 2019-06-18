@@ -20,7 +20,7 @@ tempo = 100000
 rho_fld = 1000.0
 viscosity_din = 0.8e-3
 viscosity_kin = viscosity_din / rho_fld
-grad_p = -0.012
+grad_p = -12
 
 # boundary
 v0 = 0
@@ -29,7 +29,7 @@ vh = 0
 h = 1.0
 L = 8*h     # Duct length
 
-fine = 1000
+fine = 2000
 coarse = 500
 d_fine = 0.15*h
 d_coarse = 0.85*h
@@ -40,7 +40,7 @@ y_fine2 = sp.linspace(d_coarse, h, fine+1)
 y = sp.append(y_fine, y_coarse)
 y = sp.append(y, y_fine2)
 
-# y = sp.linspace(0, h, 10000)
+# y = sp.linspace(0, h, 1000)
 
 nodes = len(y)
 elem = nodes-1
@@ -111,12 +111,19 @@ print "M inv lumped"
 # ---------   Beginning of Time Loop  --------------
 
 
+with open('turbulent.csv', mode='w') as turbulent:
+    writer = csv.writer(turbulent, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow([viscosity_turb, u_plus, u_plus_a, y_plus])
+
+with open('flowResultT.csv', mode='w') as flowResultT:
+    writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
 A_const = 26
 for t in range(tempo):
     print t, " / ", tempo
-    # with open('flowResultT.csv', mode='a') as flowResultT:
-    #     writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    #     writer.writerow(u_last)
+    with open('flowResultT.csv', mode='a') as flowResultT:
+        writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(u_last)
 
     u[0] = 0
     u[-1] = 0
@@ -139,7 +146,7 @@ for t in range(tempo):
         u_plus_a[i] = (1. / 0.41) * sp.log(y_plus[i]) + 5.5
         viscosity_turb[i] = (lc[i]**2) * abs(du_dy[i])
 
-    # viscosity_turb = sp.multiply(M_inv, viscosity_turb)  # TESTAR
+    viscosity_turb = sp.multiply(M_inv, viscosity_turb)  # TESTAR
 
 
     K = sp.zeros((nodes, nodes))
@@ -173,6 +180,7 @@ for t in range(tempo):
     RHS[0] = v0
     RHS[-1] = vh
     u = sp.linalg.solve(LHS, RHS)
+    # u, it = sp.sparse.linalg.cg(LHS, RHS, x0=u_last)
 
 
     if t > 3 and sp.all(abs(u - u_last) < 10e-6):
@@ -180,9 +188,9 @@ for t in range(tempo):
     u_last = sp.copy(u)
 
 
-    # with open('turbulent.csv', mode='a') as turbulent:
-    #     writer = csv.writer(turbulent, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    #     writer.writerow([viscosity_turb, u_plus, u_plus_a, y_plus])
+    with open('turbulent.csv', mode='a') as turbulent:
+        writer = csv.writer(turbulent, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow([viscosity_turb, u_plus, u_plus_a, y_plus])
 
 
 # ---------   End of Time Loop   -------------------
@@ -200,22 +208,33 @@ with open('properties.csv', mode='w') as properties:
 
 plt.figure(1)
 plt.plot(y, u)
+plt.title('Perfil de Velocidade')
+plt.ylabel('u')
+plt.xlabel('y')
+plt.grid(True)
 
-plt.figure(4)
-plt.plot(lc, y)
+# plt.figure(4)
+# plt.plot(lc, y)
 
-plt.figure(5)
-plt.plot(y, du_dy)
+# plt.figure(5)
+# plt.plot(y, du_dy)
 
 x = sp.linspace(0.1, 20, 10000)
 plt.figure(3)
-plt.semilogx(x, x, label='u=y')
-plt.semilogx(y_plus[0:nodes/2], u_plus_a[0:nodes/2], 'k--', label='log law')
-plt.semilogx(y_plus[0:nodes/2], u_plus[0:nodes/2], 'y.', label='numeric')
+plt.semilogx(x, x, label='u+ = y+')
+plt.semilogx(y_plus[0:nodes/2], u_plus_a[0:nodes/2], 'k--', label='Lei da parede')
+plt.semilogx(y_plus[0:nodes/2], u_plus[0:nodes/2], 'y.', label=u'numérico')
+plt.ylabel("u+")
+plt.xlabel("y+")
 plt.xlim(0.1, 10**3)
 plt.ylim(0, 25)
+plt.grid(True)
 plt.legend()
 
 plt.figure(2)
 plt.plot(y, viscosity_turb)
+plt.title('Viscosidade Turbulenta')
+plt.xlabel("y")
+plt.ylabel('nu_t')
+plt.grid(True)
 plt.show()
