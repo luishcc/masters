@@ -5,7 +5,12 @@
 .idea
 .gitignore~
 bifasico/results
-bifasico/results/*
+bifasico/2D/results/*
+bifasico/2D/results/
+bifasico/2D/results
+bifasico/3D/results/*
+bifasico/3D/results/
+bifasico/3D/results
 bifasico/results/
 bifasico/results/**
 
