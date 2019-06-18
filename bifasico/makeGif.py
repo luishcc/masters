@@ -9,8 +9,8 @@ e = sys.exit
  
 cwd = os.getcwd()
 
-newdir = cwd + '/result'
-# newdir = cwd + '/result3D'
+newdir = cwd + '/2D/result'
+#newdir = cwd + '/3D/result'
 
 os.chdir(newdir)
 
@@ -25,7 +25,7 @@ def create_gif(filenames, duration):
 
 if __name__ == "__main__":
 	script = sys.argv.pop(0)
-	duration = 0.05
+	duration = 0.01
 	filenames = sorted(filter(os.path.isfile, [x for x in os.listdir(newdir) if x.endswith(".jpg")]),
 					   key=lambda p: os.path.exists(p) and os.stat(p).st_mtime or
 									 time.mktime(datetime.now().timetuple()))
