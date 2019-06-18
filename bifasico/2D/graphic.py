@@ -26,10 +26,14 @@ u = sp.zeros((tempo, nodes))
 #     plots = csv.reader(csvfile, delimiter=',')
 #     for row in plots:
 
-matriz = sp.loadtxt('flowResultL.csv', delimiter=',')
+matriz = sp.loadtxt('flow-T.csv', delimiter=',')
 
-print matriz[999]
 
+
+x = sp.linspace(0,1, len(matriz[-1]))
+plt.figure(1)
+plt.plot(matriz[0], matriz[-1])
+plt.show()
 
 
 

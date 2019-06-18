@@ -2,10 +2,8 @@
 import scipy as sp
 from scipy import linalg
 import os
-from scipy.sparse.linalg import cg
 import sys
 import csv
-import matrix as ma
 import matplotlib.pyplot as plt
 
 cwd = os.getcwd()
@@ -13,14 +11,14 @@ cwd = os.getcwd()
 # --------------------------------------------------
 #   Problem Parameters
 
-dt = 100
+dt = 1000
 tempo = 100000
 
 # fluid
 rho_fld = 1000.0
 viscosity_din = 0.8e-3
 viscosity_kin = viscosity_din / rho_fld
-grad_p = -12
+grad_p = -0.12
 
 # boundary
 v0 = 0
@@ -29,7 +27,7 @@ vh = 0
 h = 1.0
 L = 8*h     # Duct length
 
-fine = 2000
+fine = 1000
 coarse = 500
 d_fine = 0.15*h
 d_coarse = 0.85*h
@@ -113,15 +111,18 @@ print "M inv lumped"
 
 with open('turbulent.csv', mode='w') as turbulent:
     writer = csv.writer(turbulent, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    writer.writerow([viscosity_turb, u_plus, u_plus_a, y_plus])
+    # writer.writerow(viscosity_turb, u_plus, u_plus_a, y_plus, lc)
+    writer.writerow(lc)
 
-with open('flowResultT.csv', mode='w') as flowResultT:
+
+with open('flow-T.csv', mode='w') as flowResultT:
     writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow(y)
 
 A_const = 26
 for t in range(tempo):
     print t, " / ", tempo
-    with open('flowResultT.csv', mode='a') as flowResultT:
+    with open('flow-T.csv', mode='a') as flowResultT:
         writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(u_last)
 
@@ -180,30 +181,31 @@ for t in range(tempo):
     RHS[0] = v0
     RHS[-1] = vh
     u = sp.linalg.solve(LHS, RHS)
-    # u, it = sp.sparse.linalg.cg(LHS, RHS, x0=u_last)
 
 
-    if t > 3 and sp.all(abs(u - u_last) < 10e-6):
+    norm = u - u_last
+    norm = sp.dot(norm, norm)
+    if norm < 10e-10:
         break
-    u_last = sp.copy(u)
 
+    u_last = sp.copy(u)
 
     with open('turbulent.csv', mode='a') as turbulent:
         writer = csv.writer(turbulent, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        writer.writerow([viscosity_turb, u_plus, u_plus_a, y_plus])
-
+        # writer.writerow([viscosity_turb, u_plus, u_plus_a, y_plus, lc])
+        writer.writerow(lc)
 
 # ---------   End of Time Loop   -------------------
 # --------------------------------------------------
 # --------------------------------------------------
 
-with open('flowResultT.csv', mode='a') as flowResultT:
+with open('flow-T.csv', mode='a') as flowResultT:
     writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(u_last)
 
-with open('properties.csv', mode='w') as properties:
+with open('prop-T.csv', mode='w') as properties:
     writer = csv.writer(properties, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    writer.writerow([y, dt, tempo, viscosity_din, rho_fld, viscosity_kin, h, L])
+    writer.writerow([dt, tempo, viscosity_din, rho_fld, viscosity_kin, h, L])
 
 
 plt.figure(1)
