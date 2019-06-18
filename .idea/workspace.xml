@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/masters.iml" afterPath="$PROJECT_DIR$/.idea/masters.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" afterPath="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bifasico/2D/flowResultT.csv" afterPath="$PROJECT_DIR$/bifasico/2D/flowResultT.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bifasico/2D/properties.csv" afterPath="$PROJECT_DIR$/bifasico/2D/properties.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bifasico/2D/turbulent.csv" afterPath="$PROJECT_DIR$/bifasico/2D/turbulent.csv" />
@@ -23,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/bifasico/2D/flowT.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="120" column="93" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="120" selection-end-column="93" />
+              <caret line="120" column="93" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="120" selection-end-column="93" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
@@ -34,8 +30,8 @@
       <file leaf-file-name="flow-Turb.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bifasico/2D/flow-Turb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="126">
+              <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
@@ -108,8 +104,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="358" />
-    <option name="y" value="1107" />
+    <option name="x" value="39" />
+    <option name="y" value="96" />
     <option name="width" value="1259" />
     <option name="height" value="873" />
   </component>
@@ -292,7 +288,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="358" y="1107" width="1259" height="873" extended-state="0" />
+    <frame x="39" y="96" width="1259" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13602638" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -451,7 +447,7 @@
     <entry file="file://$PROJECT_DIR$/bifasico/2D/flowT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="120" column="93" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="120" selection-end-column="93" />
+          <caret line="120" column="93" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="120" selection-end-column="93" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
@@ -468,8 +464,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/2D/flow-Turb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="126">
+          <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
