@@ -33,13 +33,11 @@ def defPlot(_xp, _yp, _n, _u, _yf, L, t):
 
 flow = 'T'      # L - laminar; T - turbulent
 u = sp.loadtxt('flow-' + flow + '.csv', delimiter=',')
+u = u*5
 
 fluid_properties = sp.loadtxt('prop-' + flow + '.csv', delimiter=',')
 # Order ->  0 dt, 1 tempo, 2 viscosity_din, 3 rho_fld, 4 viscosity_kin, 5 h, 6 L
 
-print u[0]
-
-exit()
 # --------------------------------------------------
 #   Problem Parameters
 
@@ -105,9 +103,15 @@ f_lift = sp.zeros(n_particle)                           # Only act on y directio
 
 
 u_last_interp = sp.interpolate.interp1d(u[0], u[1], fill_value=0, bounds_error=False)
+
+u_interp_aux = sp.interpolate.interp1d(u[0], u[-1], fill_value=0, bounds_error=False)
+u_last_interp_aux = sp.interpolate.interp1d(u[0], u[-2], fill_value=0, bounds_error=False)
+
 for t in range(tempo):
 
-    # if t+3 > len(u[0]):
+    if t+3 > len(u):
+        u_interp = u_interp_aux
+        u_last_interp = u_last_interp_aux
 
     # Interpolate fluid velocity at n+1 and n time step
     u_interp = sp.interpolate.interp1d(u[0], u[t+2], fill_value=0, bounds_error=False)
@@ -139,8 +143,8 @@ for t in range(tempo):
         f_lift[i] = 1.61 * sp.sqrt(viscosity_din * rho_fld * abs(du_dy)) * (diameter**2) * abs_relative_vel * du_dy
 
         # Update particle velocity
-        vy_f = sp.random.normal() * sp.sqrt(1.5) * 0.041 * du_dy
-        vx_f = sp.random.normal() * sp.sqrt(1.5) * 0.041 * du_dy
+        vy_f = sp.random.normal() * sp.sqrt(1.5) * 0.041 * u_n1
+        vx_f = sp.random.normal() * sp.sqrt(1.5) * 0.041 * u_n1
 
         vy[i] = vy_last[i] + (f_lift[i] - f_g[i] + f_dragy[i]) * constant + vy_f
         vx[i] = vx_last[i] + (f_mass_partialx[i] + f_dragx[i]) * constant + vx_f
@@ -170,7 +174,7 @@ for t in range(tempo):
         vx_last[i] = vx[i]
         vy_last[i] = vy[i]
 
-    u_last_interp = 1. * u_interp
+    u_last_interp = u_interp
 
     defPlot(posx_particle, posy_particle, n_particle, u[t+1], u[0], L, t+1)
 

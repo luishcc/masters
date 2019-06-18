@@ -3,20 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/masters.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/masters.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowL.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowResultL.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/flowT.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/graphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/graphic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/matrix.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bifasico/2D/flow-T.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/flow-T.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bifasico/2D/particle.py" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/particle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/2D/properties.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bifasico/2D/turbulent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bifasico/2D/turbulent.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/laminar-equal.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/laminar-heavy.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/laminar-light.gif" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bifasico/2D/flow-Turb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="1436">
               <caret line="183" selection-start-line="183" selection-end-line="183" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
@@ -38,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bifasico/2D/particle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="238">
+              <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
@@ -50,7 +40,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bifasico/2D/graphic.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="254">
@@ -119,13 +109,12 @@
         <option value="$PROJECT_DIR$/bifasico/2D/flow-Turb-test.py" />
         <option value="$PROJECT_DIR$/bifasico/2D/flow-Lam.py" />
         <option value="$PROJECT_DIR$/bifasico/2D/flow-Turb.py" />
-        <option value="$PROJECT_DIR$/bifasico/2D/particle.py" />
         <option value="$PROJECT_DIR$/bifasico/2D/graphic.py" />
+        <option value="$PROJECT_DIR$/bifasico/2D/particle.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
     <option name="y" value="27" />
     <option name="width" value="1081" />
     <option name="height" value="873" />
@@ -183,7 +172,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.graphic">
+  <component name="RunManager" selected="Python.particle">
     <configuration name="flow-Lam" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="masters" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -298,8 +287,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.graphic" />
         <item itemvalue="Python.particle" />
+        <item itemvalue="Python.graphic" />
         <item itemvalue="Python.flow-Turb" />
         <item itemvalue="Python.flow-Lam" />
       </list>
@@ -319,7 +308,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="27" width="1081" height="873" extended-state="0" />
+    <frame x="0" y="27" width="1081" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11058601" />
@@ -486,18 +475,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bifasico/2D/flow-Turb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="1436">
           <caret line="183" selection-start-line="183" selection-end-line="183" />
-          <folding>
-            <element signature="e#24#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/2D/particle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
@@ -508,6 +487,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/2D/particle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+          <folding>
+            <element signature="e#24#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
