@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import scipy as sp
 from scipy import linalg
+from scipy import sparse
+from scipy.sparse.linalg import spsolve
 import os
 import sys
 import csv
@@ -11,14 +13,14 @@ cwd = os.getcwd()
 # --------------------------------------------------
 #   Problem Parameters
 
-dt = 1000
-tempo = 100000
+dt = 10
+tempo = 10000
 
 # fluid
 rho_fld = 1000.0
 viscosity_din = 0.8e-3
 viscosity_kin = viscosity_din / rho_fld
-grad_p = -1.2
+grad_p = -12
 
 # boundary
 v0 = 0
@@ -27,8 +29,8 @@ vh = 0
 h = 1.0
 L = 8*h     # Duct length
 
-fine = 1000
-coarse = 500
+fine = 4000
+coarse = 2000
 d_fine = 0.15*h
 d_coarse = 0.85*h
 
@@ -43,32 +45,52 @@ y = sp.append(y, y_fine2)
 nodes = len(y)
 elem = nodes-1
 
-ien = sp.zeros((elem, 2), dtype='int32')
 dy = sp.zeros(elem)
-for i in range(0, elem):
-    dy[i] = abs(y[i+1] - y[i])
-    for j in [0, 1]:
-        ien[i, j] = int(i + j)
 
-k = sp.array([[1, -1], [-1, 1]])
-m = sp.array([[2, 1], [1, 2]])
-grad = sp.array([[-0.5, 0.5], [-0.5, 0.5]])
 Q = sp.ones(nodes) * (-grad_p / rho_fld)
-M = sp.zeros((nodes, nodes))
-G = sp.zeros((nodes, nodes))
 
+row = sp.zeros(elem*4)
+col = sp.zeros(elem*4)
+k_d = sp.zeros(elem*4)
+m_d = sp.zeros(elem*4)
+M_lump = sp.zeros(nodes)
+g_d = sp.zeros(elem*4)
 
 print "assembly"
-for e in range(elem):
-    for i_local in range(2):
-        i_global = ien[e, i_local]
-        for j_local in range(2):
-            j_global = ien[e, j_local]
-            M[i_global, j_global] += m[i_local, j_local] * (dy[e]) / 6.
-            G[i_global, j_global] += grad[i_local, j_local]
+for e in range(0, elem):
+    p = e * 4
+    dy[e] = abs(y[e+1] - y[e])
+
+    row[p] = e
+    row[p+1] = e
+    row[p+2] = e + 1
+    row[p+3] = e + 1
+
+    col[p] = e
+    col[p+1] = e + 1
+    col[p+2] = e
+    col[p+3] = e + 1
+
+    m_d[p] = 2 * (dy[e] / 6.)
+    m_d[p+1] = 1 * (dy[e] / 6.)
+    m_d[p+2] = 1 * (dy[e] / 6.)
+    m_d[p+3] = 2 * (dy[e] / 6.)
+
+    M_lump[e] += m_d[p] + m_d[p+1]
+    M_lump[e+1] += m_d[p+2] + m_d[p+3]
+
+    g_d[p] = -0.5
+    g_d[p+1] = 0.5
+    g_d[p+2] = -0.5
+    g_d[p+3] = 0.5
+
+M = sp.sparse.coo_matrix((m_d, (row, col)), shape=(nodes, nodes))
+G = sp.sparse.coo_matrix((g_d, (row, col)), shape=(nodes, nodes))
+
+G = G.tocsr()
+M = M.tocsr()
 
 Mdt = M / dt
-
 
 
 # --------------------------------------------------
@@ -87,8 +109,6 @@ lc = sp.zeros(nodes)
 M_inv = sp.zeros(nodes)
 
 for i in range(nodes):
-    for j in range(nodes):
-        M_inv[i] += M[i, j]
     if 0 <= y[i] <= 0.1 * h:
         lc[i] = 0.41 * y[i]
     elif h >= y[i] >= 0.9 * h:
@@ -96,11 +116,9 @@ for i in range(nodes):
     else:
         lc[i] = 0.41 * 0.1 * h
 
-    M_inv[i] = 1./M_inv[i]
+    M_inv[i] = 1. / M_lump[i]
 
 print "M inv lumped"
-
-
 
 
 # --------------------------------------------------
@@ -114,16 +132,16 @@ print "M inv lumped"
     # writer.writerow(lc)
 
 
-with open('flow-T.csv', mode='w') as flowResultT:
-    writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    writer.writerow(y)
+# with open('flow-T.csv', mode='w') as flowResultT:
+#     writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+#     writer.writerow(y)
 
 A_const = 26
 for t in range(tempo):
     print t, " / ", tempo
-    with open('flow-T.csv', mode='a') as flowResultT:
-        writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(u_last)
+    # with open('flow-T.csv', mode='a') as flowResultT:
+    #     writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    #     writer.writerow(u_last)
 
     u[0] = 0
     u[-1] = 0
@@ -133,8 +151,9 @@ for t in range(tempo):
     y_plus = (u_t / viscosity_kin) * y
     u_plus = (1./u_t) * u
     print t_wall
-    du_dy = sp.dot(G, u)
-    for i in range(nodes):
+
+    du_dy = G.dot(u)
+    for i in xrange(nodes):
         if 0 <= y[i] <= 0.1 * h:
             D = 1 - sp.exp(-y_plus[i]/A_const)
             lc[i] = 0.41 * y[i] * D
@@ -148,42 +167,49 @@ for t in range(tempo):
 
     viscosity_turb = sp.multiply(M_inv, viscosity_turb)
 
+    for e in xrange(elem):
+        p = 4 * e
 
-    K = sp.zeros((nodes, nodes))
-    for e in range(elem):
-        v1 = ien[e, 0]
-        v2 = ien[e, 1]
-        visc = (viscosity_turb[v1] + viscosity_turb[v2]) * 0.5
-        for i_local in range(2):
-            i_global = ien[e, i_local]
-            for j_local in range(2):
-                j_global = ien[e, j_local]
-                K[i_global, j_global] += k[i_local, j_local] * (viscosity_kin + visc) * (1. / dy[e])
+        visc = (viscosity_turb[e] + viscosity_turb[e+1]) * 0.5
+
+        k_d[p] = 1 * (1. / dy[e]) * (viscosity_kin + visc)
+        k_d[p + 1] = -1 * (1. / dy[e]) * (viscosity_kin + visc)
+        k_d[p + 2] = -1 * (1. / dy[e]) * (viscosity_kin + visc)
+        k_d[p + 3] = 1 * (1. / dy[e]) * (viscosity_kin + visc)
+
+    K = sparse.coo_matrix((k_d, (row, col)), shape=(nodes, nodes))
+    K = K.tocsr()
 
     LHS = Mdt + K
     cc = sp.zeros(nodes)
     LHS_copy = sp.copy(LHS)
-    for i in range(nodes):
-        cc[i] -= v0 * LHS_copy[i, 0]
-        cc[i] -= vh * LHS_copy[i, -1]
-        LHS[0, i] = 0
-        LHS[i, 0] = 0
-        LHS[-1, i] = 0
-        LHS[i, -1] = 0
+
+    # for i in range(nodes):
+    #     LHS[0, i] = 0
+    #     LHS[i, 0] = 0
+    #     LHS[-1, i] = 0
+    #     LHS[i, -1] = 0
+
 
     LHS[0, 0] = 1
+    LHS[1, 0] = 0
     LHS[-1, -1] = 1
+    LHS[-2, -1] = 1
+
 
     u_last[0] = v0
     u_last[-1] = vh
-    RHS = sp.dot(Mdt, u_last) + sp.dot(M, Q) + cc
+
+    RHS = Mdt.dot(u_last) + M.dot(Q)
+
     RHS[0] = v0
     RHS[-1] = vh
-    u = sp.linalg.solve(LHS, RHS)
 
+    u = spsolve(LHS, RHS)
 
     norm = u - u_last
     norm = sp.dot(norm, norm)
+    print norm
     if norm < 10e-10:
         break
 
@@ -198,13 +224,13 @@ for t in range(tempo):
 # --------------------------------------------------
 # --------------------------------------------------
 
-with open('flow-T.csv', mode='a') as flowResultT:
-    writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    writer.writerow(u_last)
-
-with open('prop-T.csv', mode='w') as properties:
-    writer = csv.writer(properties, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    writer.writerow([dt, tempo, viscosity_din, rho_fld, viscosity_kin, h, L])
+# with open('flow-T.csv', mode='a') as flowResultT:
+#     writer = csv.writer(flowResultT, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+#     writer.writerow(u_last)
+#
+# with open('prop-T.csv', mode='w') as properties:
+#     writer = csv.writer(properties, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+#     writer.writerow([dt, tempo, viscosity_din, rho_fld, viscosity_kin, h, L])
 
 
 plt.figure(1)

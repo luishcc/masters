@@ -34,7 +34,7 @@ def defPlot(_xp, _yp, _n, _u, _yf, L, t):
 
 flow = 'T'      # L - laminar; T - turbulent
 u = sp.loadtxt('flow-' + flow + '.csv', delimiter=',')
-u[1:] = u[1:]*5
+# u[1:] = u[1:]*5
 
 fluid_properties = sp.loadtxt('prop-' + flow + '.csv', delimiter=',')
 # Order ->  0 dt, 1 tempo, 2 viscosity_din, 3 rho_fld, 4 viscosity_kin, 5 h, 6 L
@@ -57,7 +57,7 @@ viscosity_din = fluid_properties[2]
 viscosity_kin = fluid_properties[4]
 
 # particle
-rho_part = 1300.0
+rho_part = 1000.0
 radius = 0.0005
 diameter = 2 * radius
 volume = (4/3.) * sp.pi * radius**3
@@ -94,6 +94,8 @@ f_dragy = sp.zeros(n_particle)
 f_mass_partialx = sp.zeros(n_particle)                  # f_mass_partialy = 0 because fluid velocity uy = 0
 f_lift = sp.zeros(n_particle)                           # Only act on y direction
 
+dudy = sp.zeros(n_particle)
+
 
 # --------------------------------------------------
 # --------------------------------------------------
@@ -118,14 +120,18 @@ for t in range(tempo):
     u_interp = sp.interpolate.interp1d(u[0], u[t+2], fill_value=0, bounds_error=False)
 
     for i in range(0, n_particle):
+
+        vy_f = sp.random.normal() * sp.sqrt(1.5) * 0.041 * dudy[i]
+        vx_f = sp.random.normal() * sp.sqrt(1.5) * 0.041 * dudy[i]
+
         # get fluid velocity at particle position
-        u_n0 = u_last_interp(posy_particle[i])
+        u_n0 = u_last_interp(posy_particle[i]) + vx_f
         u_n1 = u_interp(posy_particle[i])
         fld_accx[i] = (u_n1 - u_n0) * dt
 
         # relative velocity between fluid and particle
         relative_velx = u_n0 - vx[i]
-        relative_vely = -1 * vy[i]
+        relative_vely = vy_f - vy[i]
         abs_relative_vel = sp.sqrt(relative_velx**2 + relative_vely**2)
 
         # Compute forces
@@ -144,11 +150,10 @@ for t in range(tempo):
         f_lift[i] = 1.61 * sp.sqrt(viscosity_din * rho_fld * abs(du_dy)) * (diameter**2) * abs_relative_vel * du_dy
 
         # Update particle velocity
-        vy_f = sp.random.normal() * sp.sqrt(1.5) * 0.041 * u_n1
-        vx_f = sp.random.normal() * sp.sqrt(1.5) * 0.041 * u_n1
 
-        vy[i] = vy_last[i] + (f_lift[i] - f_g[i] + f_dragy[i]) * constant + vy_f
-        vx[i] = vx_last[i] + (f_mass_partialx[i] + f_dragx[i]) * constant + vx_f
+
+        vy[i] = vy_last[i] + (f_lift[i] - f_g[i] + f_dragy[i]) * constant
+        vx[i] = vx_last[i] + (f_mass_partialx[i] + f_dragx[i]) * constant
 
 
         print f_g[i],  f_lift[i], f_dragy[i], f_dragx[i], f_mass_partialx[i]
@@ -175,10 +180,12 @@ for t in range(tempo):
         vx_last[i] = vx[i]
         vy_last[i] = vy[i]
 
+        dudy[i] = du_dy
+
     u_last_interp = u_interp
 
     defPlot(posx_particle, posy_particle, n_particle, u[t+1], u[0], L, t+1)
-    time.sleep(2)
+    time.sleep(1)
 
 # ---------   End of Time Loop   -------------------
 
