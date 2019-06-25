@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/bifasico/2D/result" />
+      <excludeFolder url="file://$MODULE_DIR$/bifasico/3D/result" />
       <excludeFolder url="file://$MODULE_DIR$/bifasico/result" />
       <excludeFolder url="file://$MODULE_DIR$/bifasico/results" />
     </content>

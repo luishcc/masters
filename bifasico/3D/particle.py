@@ -35,7 +35,7 @@ def plot(_x, _y, _z, _name):
 # --------------------------------------------------
 #   Problem Parameters
 
-dt = 0.01
+dt = 0.05
 dt_inv = 1. / dt
 tempo = 1000
 g = 9.81
@@ -95,7 +95,7 @@ f_lifty = sp.zeros(n_particle)
 # --------------------------------------------------
 # ---------   Beginning of Time Loop  --------------
 
-plot(posx_particle, posy_particle, posz_particle, 'result/test-0.png')
+
 
 for t in range(tempo):
 
@@ -135,25 +135,17 @@ for t in range(tempo):
         posz_particle[i] = vz[i] * dt + posz_particle[i]
 
         # Check if particle is inside limits
-        if posy_particle[i] < 0:
-            aux = posy_particle[i] / vy[i]
-            vy[i] = -1 * vy[i] * collision_coef
-            posy_particle[i] = aux * vy[i]
 
-        if posy_particle[i] > h:
-            aux = (posy_particle[i]-h) / vy[i]
-            vy[i] = -1 * vy[i] * collision_coef
-            posy_particle[i] = h + aux * vy[i]
 
         if posz_particle[i] > L:
-            posz_particle[i] = posx_particle[i] - L
+            posz_particle[i] = posz_particle[i] - L
 
         vx_last[i] = vx[i]
         vy_last[i] = vy[i]
         vz_last[i] = vz[i]
 
     plot(posx_particle, posy_particle, posz_particle, 'result/test-'+str(t+1)+'.png')
-    # time.sleep(1)
+    time.sleep(1.5)
 
 # ---------   End of Time Loop   -------------------
 # --------------------------------------------------
