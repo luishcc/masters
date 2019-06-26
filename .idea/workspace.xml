@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/GMesh.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/flow-Lam.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/flow-Turb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/flow3D.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/libmalha.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/main3D-new.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/main3D.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/mesh/circulo.geo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bifasico/3D/mesh/circulo.msh" beforeDir="false" />
-    </list>
+    <list default="true" id="dcdb6a54-70f9-4218-aa08-cfbf17daa1d3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +99,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -132,7 +122,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -297,7 +286,7 @@
     <frame x="0" y="27" width="1081" height="873" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12665406" />
-      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Structure" order="1" weight="0.24952741" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -431,30 +420,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/3D/libmalha.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="240" selection-start-line="240" selection-end-line="282" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/3D/flow-Lam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#999#2989#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bifasico/3D/flow3D.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="28" column="22" selection-start-line="13" selection-end-line="28" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bifasico/3D/libmalha.py" />
+    <entry file="file://$PROJECT_DIR$/bifasico/3D/flow-Lam.py" />
+    <entry file="file://$PROJECT_DIR$/bifasico/3D/flow3D.py" />
     <entry file="file://$PROJECT_DIR$/bifasico/3D/particle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="622">
