@@ -13,14 +13,14 @@ cwd = os.getcwd()
 # --------------------------------------------------
 #   Problem Parameters
 
-dt = 10
-tempo = 10000
+dt = 0.1
+tempo = 3000
 
 # fluid
 rho_fld = 1000.0
 viscosity_din = 0.8e-3
 viscosity_kin = viscosity_din / rho_fld
-grad_p = -12
+grad_p = -1.2
 
 # boundary
 v0 = 0
@@ -29,8 +29,8 @@ vh = 0
 h = 1.0
 L = 8*h     # Duct length
 
-fine = 4000
-coarse = 2000
+fine = 2000
+coarse = 500
 d_fine = 0.15*h
 d_coarse = 0.85*h
 
@@ -150,7 +150,6 @@ for t in range(tempo):
     u_t = sp.sqrt(t_wall / rho_fld)
     y_plus = (u_t / viscosity_kin) * y
     u_plus = (1./u_t) * u
-    print t_wall
 
     du_dy = G.dot(u)
     for i in xrange(nodes):
@@ -208,9 +207,9 @@ for t in range(tempo):
     u = spsolve(LHS, RHS)
 
     norm = u - u_last
-    norm = sp.dot(norm, norm)
+    norm = sp.sqrt(sp.dot(norm, norm))
     print norm
-    if norm < 10e-10:
+    if norm < 10e-5:
         break
 
     u_last = sp.copy(u)
@@ -233,15 +232,18 @@ for t in range(tempo):
 #     writer.writerow([dt, tempo, viscosity_din, rho_fld, viscosity_kin, h, L])
 
 
+x = sp.linspace(0,1,1000)
+vv = sp.linspace(0,1,1000)
+for i in range(1000):
+	vv[i] = 6*(x[i] - x[i]**2)
 plt.figure(1)
 plt.plot(y, u)
+plt.plot(x, vv)
 plt.title('Perfil de Velocidade')
 plt.ylabel('u')
 plt.xlabel('y')
 plt.grid(True)
 
-# plt.figure(4)
-# plt.plot(lc, y)
 
 # plt.figure(5)
 # plt.plot(y, du_dy)

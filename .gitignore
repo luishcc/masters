@@ -13,6 +13,9 @@ bifasico/3D/results/
 bifasico/3D/results
 bifasico/results/
 bifasico/results/**
+bifasico/2D/csv
+bifasico/2D/csv/
+bifasico/2D/csv/*
 
 /codigos/in-dev/temp/results/*
 
