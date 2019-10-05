@@ -1,22 +1,16 @@
-/mcf2/ex1/results
-/mcf2/ex1/results/**
+2phase/results
+2phase/2D/results/*
+2phase/2D/results/
+2phase/2D/results
+2phase/3D/results/*
+2phase/3D/results/
+2phase/3D/results
+2phase/results/
+2phase/results/**
+2phase/2D/csv
+2phase/2D/csv/
+2phase/2D/csv/*
 
-.idea/*
-.idea
-.gitignore~
-bifasico/results
-bifasico/2D/results/*
-bifasico/2D/results/
-bifasico/2D/results
-bifasico/3D/results/*
-bifasico/3D/results/
-bifasico/3D/results
-bifasico/results/
-bifasico/results/**
-bifasico/2D/csv
-bifasico/2D/csv/
-bifasico/2D/csv/*
 
-/codigos/in-dev/temp/results/*
 
 
